@@ -1,5 +1,6 @@
 package:
     name:           hipanel-module-dns
+    namespace:      hipanel\modules\dns
     label:          HipanelModuleDns
     title:          Hipanel Module Dns
     type:           package

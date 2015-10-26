@@ -18,21 +18,20 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
     protected $_addTo = 'sidebar';
 
     protected $_where = [
-        'after'  => ['clients', 'dashboard', 'header', 'servers', 'hosting'],
-        'before' => ['tickets', 'domains'],
+        'before' => ['server', 'domains'],
     ];
 
     public function items()
     {
         return [
-            'finance' => [
+            'dns' => [
                 'label' => Yii::t('app', 'DNS'),
-                'url'   => ['/dns/domains/index'],
+                'url'   => ['/dns/zone/index'],
                 'icon'  => 'fa-globe',
                 'items' => [
-                    'payments' => [
+                    'zones' => [
                         'label' => Yii::t('app', 'Domains'),
-                        'url'   => ['/dns/domain/index'],
+                        'url'   => ['/dns/zone/index'],
                     ],
                 ],
             ],

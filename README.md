@@ -1,7 +1,7 @@
 Hipanel Module Dns
 ------------------
 
-HiPanel Module DNS
+Hipanel Module Dns
 
 [![Latest Stable Version](https://poser.pugx.org/hiqdev/hipanel-module-dns/v/stable.png)](https://packagist.org/packages/hiqdev/hipanel-module-dns)
 [![Total Downloads](https://poser.pugx.org/hiqdev/hipanel-module-dns/downloads.png)](https://packagist.org/packages/hiqdev/hipanel-module-dns)

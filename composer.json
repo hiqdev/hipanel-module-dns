@@ -49,7 +49,7 @@
     },
     "autoload": {
         "psr-4": {
-            "hiqdev\\hipanel-module-dns\\": "src"
+            "hipanel\\modules\\dns\\": "src"
         }
     }
 }

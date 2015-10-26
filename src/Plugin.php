@@ -15,10 +15,10 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
 {
     protected $_items = [
         'aliases' => [
-            '@dns-domain' => '/dns/domain',
+            '@dns-domain' => '/dns/zone',
         ],
         'menus' => [
-            'hipanel\modules\finance\SidebarMenu',
+            'hipanel\modules\dns\SidebarMenu',
         ],
         'modules' => [
             'dns' => [
