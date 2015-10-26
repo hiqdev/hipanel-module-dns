@@ -11,12 +11,6 @@ class ZoneController extends \hipanel\base\CrudController
         return [
             'index' => [
                 'class' => 'hipanel\actions\IndexAction',
-                'data' => function ($action) {
-                    return [
-                        'stateData' => $action->controller->getStateData(),
-                        'typeData' => $action->controller->getTypeData(),
-                    ];
-                }
             ],
             'view' => [
                 'class' => 'hipanel\actions\ViewAction',
