@@ -3,7 +3,7 @@ package:
     namespace:      hipanel\modules\dns
     label:          HipanelModuleDns
     title:          Hipanel Module Dns
-    type:           package
+    type:           yii2-extension
     keywords:       hipanel, module, dns
     year:           2015
 

@@ -1,6 +1,6 @@
 {
     "name": "hiqdev/hipanel-module-dns",
-    "type": "package",
+    "type": "yii2-extension",
     "description": "Hipanel Module Dns",
     "keywords": [
         "hipanel",
