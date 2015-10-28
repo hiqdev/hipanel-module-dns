@@ -3,6 +3,7 @@
 namespace hipanel\modules\dns\controllers;
 
 use Yii;
+use yii\data\ArrayDataProvider;
 
 class ZoneController extends \hipanel\base\CrudController
 {
@@ -12,9 +13,20 @@ class ZoneController extends \hipanel\base\CrudController
             'index' => [
                 'class' => 'hipanel\actions\IndexAction',
             ],
-            'view' => [
-                'class' => 'hipanel\actions\ViewAction',
-            ],
         ];
     }
+
+    public function actionView($id) {
+        $model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one();
+        $recordsDataProvider = new ArrayDataProvider([
+            'allModels' => $model->records
+        ]);
+
+        return $this->render('view', [
+            'model' => $model,
+            'recordsDataProvider' => $recordsDataProvider
+        ]);
+    }
+
+
 }

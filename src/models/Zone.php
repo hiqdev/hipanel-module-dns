@@ -29,6 +29,10 @@ class Zone extends Model
         ];
     }
 
+    public function getRecords() {
+        return $this->hasMany(Record::className(), ['id' => 'hdomain_id']);
+    }
+
     /**
      * @inheritdoc
      */
@@ -38,7 +42,9 @@ class Zone extends Model
         ]);
     }
 
-
+    /**
+     * @return array
+     */
     public function scenarioCommands()
     {
         return [
