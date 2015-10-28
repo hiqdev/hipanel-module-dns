@@ -15,7 +15,7 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
 {
     protected $_items = [
         'aliases' => [
-            '@dns-domain' => '/dns/zone',
+            '@dns' => '/dns/',
         ],
         'menus' => [
             'hipanel\modules\dns\SidebarMenu',
