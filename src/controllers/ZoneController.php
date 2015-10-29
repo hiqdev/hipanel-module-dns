@@ -27,6 +27,4 @@ class ZoneController extends \hipanel\base\CrudController
             'recordsDataProvider' => $recordsDataProvider
         ]);
     }
-
-
 }

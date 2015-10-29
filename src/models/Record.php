@@ -8,6 +8,7 @@ use hipanel\modules\dns\validators\FqdnValueValidator;
 use hipanel\modules\dns\validators\MxValueValidator;
 use hipanel\modules\dns\validators\SrvValueValidator;
 use hipanel\modules\dns\validators\TxtValueValidator;
+use hipanel\modules\hosting\models\Hdomain;
 use hipanel\validators\IpValidator;
 use Yii;
 use yii\helpers\Json;
@@ -30,7 +31,7 @@ class Record extends Model
     public function rules()
     {
         return [
-            [['id', 'hdomain_id', 'service_id', 'server_id'], 'integer'],
+            [['id', 'service_id', 'server_id'], 'integer'],
             [['name', 'domain', 'type', 'fqdn', 'value', 'service', 'server'], 'safe'],
             [['is_system'], 'boolean'],
 
@@ -116,8 +117,9 @@ class Record extends Model
             [['no'], 'integer', 'on' => ['create', 'update']],
 
             /// For all:
-            [['value', 'type', 'ttl'], 'required', 'on' => ['create', 'update', 'delete']],
-            [['id'], 'required', 'on' => ['update', 'delete']]
+            [['value', 'type', 'ttl'], 'required', 'on' => ['create', 'update']],
+            [['id'], 'required', 'on' => ['update', 'delete']],
+            [['hdomain_id'], 'required', 'on' => ['create', 'update', 'delete']],
         ];
     }
 
@@ -139,6 +141,10 @@ class Record extends Model
                 return $not !== (types.indexOf(type.val()) > -1);
             }
         ");
+    }
+
+    public function getValueText() {
+        return ($this->type === 'mx' ? $this->no . ' ' : '') . $this->value;
     }
 
     public function getTypes() {
@@ -168,6 +174,8 @@ class Record extends Model
     {
         return $this->mergeAttributeLabels([
             'ttl' => Yii::t('app', 'TTL'),
+            'value' => Yii::t('app', 'Value'),
+            'fqdn' => Yii::t('app', 'Name'),
         ]);
     }
 
@@ -177,6 +185,9 @@ class Record extends Model
     public function scenarioCommands()
     {
         return [
+            'create' => 'set-record',
+            'update' => 'set-record',
+            'delete' => 'unset-record',
         ];
     }
 }
