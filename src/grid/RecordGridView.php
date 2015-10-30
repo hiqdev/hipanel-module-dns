@@ -40,6 +40,22 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 'class'             => ActionColumn::className(),
                 'template'          => '{delete}',
                 'buttons'           => [
+//                    'update'    => function ($url, $model, $key) {
+//                        $data = Html::a('<i class="fa fa-trash-o"></i> ' . Yii::t('app', 'Update'), null, [
+//                            'class' => 'edit-dns-toggle',
+//                            'data' => [
+//                                'hdomain_id' => $model->hdomain_id,
+//                                'id' => $model->id,
+//                            ],
+//                        ]);
+//                        Yii::$app->view->registerJs("
+//                            $('.edit-dns-toggle').click(function () {
+//                                var expand_row = $('<tr>');
+//
+//                            });
+//                        ");
+//                        return $data;
+//                    },
                     'delete'    => function ($url, $model, $key) {
                         return ModalButton::widget([
                             'model' => $model,

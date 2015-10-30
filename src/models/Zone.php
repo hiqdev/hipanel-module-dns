@@ -11,12 +11,12 @@ class Zone extends Model
 
     public static function index()
     {
-        return 'dnss';
+        return 'dnszones';
     }
 
     public static function type()
     {
-        return 'dns';
+        return 'dnszone';
     }
 
     public function rules()

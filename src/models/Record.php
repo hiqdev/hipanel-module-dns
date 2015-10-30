@@ -17,15 +17,15 @@ use yii\web\JsExpression;
 class Record extends Model
 {
     use \hipanel\base\ModelTrait;
-
+    
     public static function index()
     {
-        return 'dnss';
+        return 'dnsrecords';
     }
 
     public static function type()
     {
-        return 'dns';
+        return 'dnsrecord';
     }
 
     public function rules()
@@ -120,6 +120,11 @@ class Record extends Model
             [['value', 'type', 'ttl'], 'required', 'on' => ['create', 'update']],
             [['id'], 'required', 'on' => ['update', 'delete']],
             [['hdomain_id'], 'required', 'on' => ['create', 'update', 'delete']],
+
+            /// Status
+            [['status'], 'default', 'value' => 'deleted', 'when' => function ($model) {
+                return $model->scenario === 'delete';
+            }],
         ];
     }
 
@@ -185,9 +190,9 @@ class Record extends Model
     public function scenarioCommands()
     {
         return [
-            'create' => 'set-record',
-            'update' => 'set-record',
-            'delete' => 'unset-record',
+            'create' => 'set',
+            'update' => 'set',
+            'delete' => 'set',
         ];
     }
 }
