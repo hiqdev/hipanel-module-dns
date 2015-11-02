@@ -8,7 +8,6 @@ use hipanel\widgets\ModalButton;
 use Yii;
 use hipanel\grid\MainColumn;
 use yii\helpers\Html;
-use yii\web\JsExpression;
 
 class RecordGridView extends \hipanel\grid\BoxedGridView
 {
@@ -37,25 +36,57 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 'attribute'         => 'name',
             ],
             'actions'       => [
-                'class'             => ActionColumn::className(),
-                'template'          => '{delete}',
-                'buttons'           => [
-//                    'update'    => function ($url, $model, $key) {
-//                        $data = Html::a('<i class="fa fa-trash-o"></i> ' . Yii::t('app', 'Update'), null, [
-//                            'class' => 'edit-dns-toggle',
-//                            'data' => [
-//                                'hdomain_id' => $model->hdomain_id,
-//                                'id' => $model->id,
-//                            ],
-//                        ]);
-//                        Yii::$app->view->registerJs("
-//                            $('.edit-dns-toggle').click(function () {
-//                                var expand_row = $('<tr>');
-//
-//                            });
-//                        ");
-//                        return $data;
-//                    },
+                'class'                => ActionColumn::className(),
+                'template'             => '{update} {delete}',
+                'visibleButtonsCount'  => 2,
+                'buttons'              => [
+                    'update'    => function ($url, $model, $key) {
+                        if ($model->is_system) {
+                            return '';
+                        }
+
+                        $data = Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('app', 'Update'), null, [
+                            'class' => 'btn btn-default btn-xs edit-dns-toggle',
+                            'data' => [
+                                'record_id' => $model->id,
+                                'hdomain_id' => $model->hdomain_id,
+                                'load-url' => Url::to(['@dns/record/update', 'hdomain_id' => $model->hdomain_id, 'id' => $model->id])
+                            ],
+                        ]);
+
+                        Yii::$app->view->registerJs("
+                            $('.edit-dns-toggle').click(function () {
+                                var record_id = $(this).data('id');
+                                var hdomain_id = $(this).data('hdomain_id');
+
+                                var currentRow = $(this).closest('tr');
+                                var newRow = $(\"<tr><td colspan='5'><div class='progress'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'><span class='sr-only'>...</span></div></div></td></tr>\");
+
+                                $(newRow).data({'record_id': record_id, hdomain_id: hdomain_id});
+                                $('tr').filter(function () { return $(this).data('id') == record_id; }).find('.btn-cancel').click();
+                                $(newRow).insertAfter(currentRow);
+
+                                jQuery.ajax({
+                                    url: $(this).data('load-url'),
+                                    type: 'GET',
+                                    timeout: 0,
+                                    // data: form.serialize(),
+                                    error: function() {
+
+                                    },
+                                    success: function(data) {
+                                        newRow.find('td').html(data);
+                                        newRow.find('.btn-cancel').on('click', function (event) {
+                                            event.preventDefault();
+                                            newRow.remove();
+                                        });
+                                    }
+                                });
+
+                            });
+                        ");
+                        return $data;
+                    },
                     'delete'    => function ($url, $model, $key) {
                         return ModalButton::widget([
                             'model' => $model,
@@ -65,7 +96,8 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                                 'action' => Url::to('@dns/record/delete')
                             ],
                             'button' => [
-                                'label' => '<i class="fa fa-trash-o"></i> ' . Yii::t('app', 'Delete'),
+                                'class' => 'btn btn-default btn-xs',
+                                'label' => '<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('app', 'Delete'),
                             ],
                             'modal' => [
                                 'header' => Html::tag('h4', Yii::t('app', 'Confirm DNS record deleting')),

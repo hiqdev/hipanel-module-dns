@@ -38,6 +38,22 @@ class RecordController extends \hipanel\base\CrudController
         throw new BadRequestHttpException('Bad request');
     }
 
+    public function actionUpdate($id = null, $hdomain_id = null) {
+        if ($id && $hdomain_id && $model = $this->newModel()->findOne(compact('id', 'hdomain_id'))) {
+            $model->scenario = 'update';
+            return $this->renderAjax('update', ['model' => $model]);
+        }
+
+        $collection = (new Collection([
+            'model' => $this->newModel(['scenario' => 'update'])
+        ]))->load();
+
+        if ($collection->first->id && $collection->save()) {
+            return $this->renderZoneView($collection->first->hdomain_id);
+        }
+        throw new BadRequestHttpException('Bad request123');
+    }
+
     public function actionDelete()
     {
         $collection = (new Collection([
