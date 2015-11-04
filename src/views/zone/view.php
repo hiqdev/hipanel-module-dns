@@ -1,6 +1,7 @@
 <?php
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
+use hipanel\widgets\Pjax;
 use yii\data\ArrayDataProvider;
 
 
@@ -9,7 +10,8 @@ use yii\data\ArrayDataProvider;
  * @var $recordsDataProvider ArrayDataProvider
  */
 
-\hipanel\widgets\Pjax::begin([
+Pjax::begin([
+    'id' => 'dns_zone_view',
     'enablePushState' => false
 ]);
 
@@ -70,4 +72,4 @@ $this->breadcrumbs->setItems([
 </div>
 
 <?php
-\hipanel\widgets\Pjax::end();
+Pjax::end();

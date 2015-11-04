@@ -7,7 +7,9 @@ use hipanel\helpers\Url;
 use hipanel\widgets\ModalButton;
 use Yii;
 use hipanel\grid\MainColumn;
+use yii\bootstrap\Progress;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 class RecordGridView extends \hipanel\grid\BoxedGridView
 {
@@ -58,13 +60,19 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             ],
                         ]);
 
+                        $progress = Json::htmlEncode("<tr><td colspan='5'>" . Progress::widget([
+                            'id' => 'progress-bar',
+                            'percent' => 100,
+                            'barOptions' => ['class' => 'active progress-bar-striped', 'style' => 'width: 100%'],
+                        ]) . "</td></tr>");
+
                         Yii::$app->view->registerJs("
                             $('.edit-dns-toggle').click(function () {
                                 var record_id = $(this).data('id');
                                 var hdomain_id = $(this).data('hdomain_id');
 
                                 var currentRow = $(this).closest('tr');
-                                var newRow = $(\"<tr><td colspan='5'><div class='progress'><div class='progress-bar progress-bar-striped active' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%'><span class='sr-only'>...</span></div></div></td></tr>\");
+                                var newRow = $($progress);
 
                                 $(newRow).data({'record_id': record_id, hdomain_id: hdomain_id});
                                 $('tr').filter(function () { return $(this).data('id') == record_id; }).find('.btn-cancel').click();

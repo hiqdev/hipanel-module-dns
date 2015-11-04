@@ -18,9 +18,7 @@ class ZoneController extends \hipanel\base\CrudController
 
     public function actionView($id) {
         $model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one();
-        $recordsDataProvider = new ArrayDataProvider([
-            'allModels' => $model->records
-        ]);
+        $recordsDataProvider = new ArrayDataProvider(['allModels' => $model->records]);
 
         return $this->render('view', [
             'model' => $model,
