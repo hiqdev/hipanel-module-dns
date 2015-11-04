@@ -42,6 +42,9 @@ $this->breadcrumbs->setItems([
     <div class="col-md-12">
         <?php echo \hipanel\modules\dns\grid\RecordGridView::widget([
             'dataProvider' => $recordsDataProvider,
+            'options' => [
+                'class' => '',
+            ],
             'columns' => [
                 'fqdn',
                 [
