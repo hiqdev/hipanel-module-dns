@@ -44,9 +44,22 @@ $this->breadcrumbs->setItems([
             'dataProvider' => $recordsDataProvider,
             'columns' => [
                 'fqdn',
-                'type',
+                [
+                    'attribute' => 'type',
+                    'options' => [
+                        'style' => 'width: 3%;'
+                    ],
+                    'value' => function ($model) {
+                        return strtoupper($model->type);
+                    }
+                ],
                 'value',
-                'ttl',
+                [
+                    'attribute' => 'ttl',
+                    'options' => [
+                        'style' => 'width: 5%;'
+                    ],
+                ],
                 'actions'
             ]
         ]); ?>

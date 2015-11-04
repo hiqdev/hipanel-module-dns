@@ -41,6 +41,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
 
                 'domain',
                 'dns_on',
+                'nss',
 
                 'actions',
             ],

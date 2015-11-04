@@ -28,7 +28,8 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
             'value' => [
                 'value' => function ($model) {
                     return $model->getValueText();
-                }
+                },
+
             ],
             'zone'       => [
                 'class'             => MainColumn::className(),
@@ -39,6 +40,9 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 'class'                => ActionColumn::className(),
                 'template'             => '{update} {delete}',
                 'visibleButtonsCount'  => 2,
+                'options'              => [
+                    'style' => 'width: 15%'
+                ],
                 'buttons'              => [
                     'update'    => function ($url, $model, $key) {
                         if ($model->is_system) {

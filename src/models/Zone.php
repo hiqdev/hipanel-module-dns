@@ -39,6 +39,8 @@ class Zone extends Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
+            'dns_on' => Yii::t('app', 'DNS on'),
+            'nss' => Yii::t('app', 'NS servers'),
         ]);
     }
 

@@ -6,6 +6,7 @@ use hipanel\modules\dns\models\Zone;
 use hiqdev\hiart\Collection;
 use Yii;
 use yii\data\ArrayDataProvider;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 

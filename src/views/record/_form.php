@@ -87,7 +87,9 @@ if ($model->scenario == 'update') {
         'submit' => ModalButton::SUBMIT_PJAX,
         'form' => false,
         'button' => [
+            'tag' => 'a',
             'label' => '<i class="fa fa-trash-o"></i> ' . Yii::t('app', 'Delete'),
+            'class' => 'pull-right btn btn-default',
         ],
         'modal' => [
             'header' => Html::tag('h4', Yii::t('app', 'Confirm DNS record deleting')),
@@ -120,4 +122,8 @@ $this->registerJs("$('#{$form->id} .record-item').on('change', '[data-attribute=
     });
 
     return true;
+});
+
+$('#{$form->id}').on('submit', function () {
+    $(this).find('.btn').attr('disabled', true);
 });"); ?>
