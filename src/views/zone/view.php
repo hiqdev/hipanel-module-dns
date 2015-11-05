@@ -10,11 +10,6 @@ use yii\data\ArrayDataProvider;
  * @var $recordsDataProvider ArrayDataProvider
  */
 
-Pjax::begin([
-    'id' => 'dns_zone_view',
-    'enablePushState' => false
-]);
-
 $this->title = $model->domain;
 $this->subtitle = Yii::t('app', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
 $this->breadcrumbs->setItems([
@@ -22,6 +17,10 @@ $this->breadcrumbs->setItems([
     $this->title,
 ]);
 
+Pjax::begin([
+    'id' => 'dns_zone_view',
+    'enablePushState' => false,
+]);
 ?>
 <div class="row">
     <div class="col-md-12">
