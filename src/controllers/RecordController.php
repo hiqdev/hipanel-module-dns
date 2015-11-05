@@ -31,6 +31,7 @@ class RecordController extends \hipanel\base\CrudController
         ]))->load();
 
         if ($collection->count() && $collection->save()) {
+            Yii::$app->session->addFlash('success', Yii::t('app', '{0, plural, one{DNS record} other{# DNS records}} created successfully', $collection->count()));
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
             return $this->redirect(['@dns/zone/view', 'id' => $id]);
@@ -50,6 +51,7 @@ class RecordController extends \hipanel\base\CrudController
         ]))->load();
 
         if ($collection->first->id && $collection->save()) {
+            Yii::$app->session->addFlash('success', Yii::t('app', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
             return $this->renderZoneView($collection->first->hdomain_id);
         }
         throw new BadRequestHttpException('Bad request123');
@@ -62,6 +64,7 @@ class RecordController extends \hipanel\base\CrudController
         ]))->load();
 
         if ($collection->validate() && $collection->save()) {
+            Yii::$app->session->addFlash('success', Yii::t('app', '{0, plural, one{DNS record} other{# DNS records}} deleted successfully', $collection->count()));
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
             return $this->redirect(['@dns/zone/view', 'id' => $id]);

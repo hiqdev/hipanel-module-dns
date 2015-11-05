@@ -100,7 +100,7 @@ use yii\web\View;
                     ],
                     'modal' => [
                         'header' => Html::tag('h4', Yii::t('app', 'Confirm DNS record deleting')),
-                        'headerOptions' => ['class' => 'label-info'],
+                        'headerOptions' => ['class' => 'label-danger'],
                         'footer' => [
                             'label' => Yii::t('app', 'Delete record'),
                             'data-loading-text' => Yii::t('app', 'Deleting record...'),

@@ -82,7 +82,6 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                                     url: $(this).data('load-url'),
                                     type: 'GET',
                                     timeout: 0,
-                                    // data: form.serialize(),
                                     error: function() {
 
                                     },
@@ -113,7 +112,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             ],
                             'modal' => [
                                 'header' => Html::tag('h4', Yii::t('app', 'Confirm DNS record deleting')),
-                                'headerOptions' => ['class' => 'label-info'],
+                                'headerOptions' => ['class' => 'label-danger'],
                                 'footer' => [
                                     'label' => Yii::t('app', 'Delete record'),
                                     'data-loading-text' => Yii::t('app', 'Deleting record...'),
