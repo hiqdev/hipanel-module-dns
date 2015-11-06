@@ -33,17 +33,15 @@ use yii\web\View;
             <div class="row record-item">
                 <?php
                 if ($id = $model->id) {
-//            echo $form->field($model, "[{$id}]id")->hiddenInput()->label(false);
-                    print Html::activeHiddenInput($model, "[{$id}]id");
+                    echo Html::activeHiddenInput($model, "[$id]id");
                 } else {
                     $id = 0;
                 }
-                //        echo $form->field($model, "[{$id}]hdomain_id")->hiddenInput()->label(false);
-                print Html::activeHiddenInput($model, "[{$id}]hdomain_id");
+                echo Html::activeHiddenInput($model, "[$id]hdomain_id");
 
                 ?>
                 <div class="col-lg-3 col-md-4">
-                    <?= $form->field($model, "[{$id}]name", [
+                    <?= $form->field($model, "[$id]name", [
                         'template' => '
                     {label}
                     <div class="input-group">
@@ -57,14 +55,14 @@ use yii\web\View;
                     ]) ?>
                 </div>
                 <div class="col-lg-2 col-md-2">
-                    <?= $form->field($model, "[{$id}]type",
+                    <?= $form->field($model, "[$id]type",
                         ['inputOptions' => ['data-attribute' => 'type']])->dropDownList($model->getTypes()) ?>
                 </div>
                 <div class="col-lg-5 col-md-4">
-                    <?= $form->field($model, "[{$id}]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
+                    <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
                 </div>
                 <div class="col-lg-2 col-md-2">
-                    <?= $form->field($model, "[{$id}]ttl")->dropDownList([
+                    <?= $form->field($model, "[$id]ttl")->dropDownList([
                         60 => 60,
                         600 => 600,
                         3600 => 3600,
