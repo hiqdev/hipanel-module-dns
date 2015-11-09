@@ -24,6 +24,13 @@ class RecordController extends \hipanel\base\CrudController
         ];
     }
 
+    /**
+     * Created the DNS record
+     *
+     * @return string|\yii\web\Response
+     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
+     */
     public function actionCreate()
     {
         $collection = (new Collection([
@@ -40,6 +47,15 @@ class RecordController extends \hipanel\base\CrudController
         throw new BadRequestHttpException('Bad request');
     }
 
+    /**
+     * Updates the DNS record
+     *
+     * @param integer $id
+     * @param integer $hdomain_id
+     * @return string
+     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
+     */
     public function actionUpdate($id = null, $hdomain_id = null) {
         if ($id && $hdomain_id && $model = $this->newModel()->findOne(compact('id', 'hdomain_id'))) {
             $model->scenario = 'update';
@@ -57,6 +73,13 @@ class RecordController extends \hipanel\base\CrudController
         throw new BadRequestHttpException('Bad request123');
     }
 
+    /**
+     * Deletes the record
+     *
+     * @return string|\yii\web\Response
+     * @throws BadRequestHttpException
+     * @throws NotFoundHttpException
+     */
     public function actionDelete()
     {
         $collection = (new Collection([
@@ -73,8 +96,17 @@ class RecordController extends \hipanel\base\CrudController
         throw new BadRequestHttpException('Bad request');
     }
 
+    /**
+     * Renders zone view. Duplicates ZoneController/actionView
+     *
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function renderZoneView($id) {
-        $model = Zone::find()->joinWith('records')->where(['id' => $id])->one();
+        if (($model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
+            throw new NotFoundHttpException('DNS zone does not exists');
+        }
         $recordsDataProvider = new ArrayDataProvider(['allModels' => $model->records]);
 
         return $this->render('/zone/view', [
