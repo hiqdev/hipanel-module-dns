@@ -34,7 +34,15 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
             ],
             'dns_on' => [
                 'format' => 'raw',
-                'filter' => false,
+                'filter' => function ($column, $model, $attribute) {
+                    return Html::activeDropDownList($model, $attribute, [
+                        '' => Yii::t('app', '---'),
+                        '1' => Yii::t('app', 'Enabled'),
+                        '0' => Yii::t('app', 'Disabled'),
+                    ], [
+                        'class'     => 'form-control',
+                    ]);
+                },
                 'value' => function ($model) {
                     return Label::widget([
                         'color' => $model->dns_on ? 'success' : 'Enabled',
