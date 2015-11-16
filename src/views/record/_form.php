@@ -76,13 +76,13 @@ use yii\web\View;
             <?php
 
             if ($model->scenario == 'create') {
-                echo Html::submitButton(Yii::t('app', 'Create'), ['class' => 'btn btn-success']);
+                echo Html::submitButton(Yii::t('hipanel', 'Create'), ['class' => 'btn btn-success']);
             } else {
-                echo Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']);
+                echo Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']);
             }
 
             echo '&nbsp;';
-            echo Html::button(Yii::t('app', 'Cancel'), ['class' => 'btn btn-default btn-cancel']);
+            echo Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default btn-cancel']);
             echo '&nbsp;';
 
             if ($model->scenario == 'update') {
@@ -93,20 +93,20 @@ use yii\web\View;
                     'form' => false,
                     'button' => [
                         'tag' => 'a',
-                        'label' => '<i class="fa fa-trash-o"></i> ' . Yii::t('app', 'Delete'),
+                        'label' => '<i class="fa fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'),
                         'class' => 'pull-right btn btn-default',
                     ],
                     'modal' => [
-                        'header' => Html::tag('h4', Yii::t('app', 'Confirm DNS record deleting')),
+                        'header' => Html::tag('h4', Yii::t('hipanel/dns', 'Confirm DNS record deleting')),
                         'headerOptions' => ['class' => 'label-danger'],
                         'footer' => [
-                            'label' => Yii::t('app', 'Delete record'),
-                            'data-loading-text' => Yii::t('app', 'Deleting record...'),
+                            'label' => Yii::t('hipanel/dns', 'Delete record'),
+                            'data-loading-text' => Yii::t('hipanel/dns', 'Deleting record...'),
                             'class' => 'btn btn-danger',
                         ],
                     ],
                     'body' => function ($model) {
-                        echo Yii::t('app', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
+                        echo Yii::t('hipanel/dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
                     },
                 ]);
             }

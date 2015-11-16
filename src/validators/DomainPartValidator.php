@@ -34,7 +34,7 @@ class DomainPartValidator extends RegularExpressionValidator
     public function init()
     {
         parent::init();
-        $this->message = Yii::t('app', '{attribute} is not a valid domain name part');
+        $this->message = Yii::t('hipanel/dns', '{attribute} is not a valid domain name part');
         if ($this->extended) {
             $this->pattern = $this->extendedPattern;
         }

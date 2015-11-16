@@ -28,7 +28,7 @@ class FqdnValueValidator extends RegularExpressionValidator
     public function init()
     {
         parent::init();
-        $this->message = \Yii::t('app', '{attribute} does not look like a valid domain name');
+        $this->message = \Yii::t('hipanel/dns', '{attribute} is not a valid domain name');
     }
 
     /**

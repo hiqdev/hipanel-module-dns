@@ -9,12 +9,11 @@ use hipanel\modules\dns\grid\ZoneGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
 
-$this->title = Yii::t('app', 'DNS zones');
+$this->title = Yii::t('hipanel/dns', 'DNS zones');
 $this->breadcrumbs->setItems([
     $this->title,
 ]);
-$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(),
-    [])) ? 'filtered list' : 'full list'; ?>
+$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list'; ?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
 
@@ -22,7 +21,11 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
     <?php $box->beginActions() ?>
         <?= $box->renderSearchButton() ?>
         <?= $box->renderSorter([
-            'attributes' => [],
+            'attributes' => [
+                'client',
+                'domain',
+                'dns_on'
+            ],
         ]) ?>
     <?php $box->endActions() ?>
     <?php $box->beginBulkActions() ?>
@@ -40,8 +43,9 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
                 'client',
 
                 'domain',
-                'dns_on',
                 'nss',
+                'dns_on',
+                'bound_to',
 
                 'actions',
             ],
