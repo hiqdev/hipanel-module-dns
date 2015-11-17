@@ -8,6 +8,7 @@
 use hipanel\modules\dns\grid\ZoneGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
+use yii\helpers\Url;
 
 $this->title = Yii::t('hipanel/dns', 'DNS zones');
 $this->breadcrumbs->setItems([
@@ -28,10 +29,12 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
             ],
         ]) ?>
     <?php $box->endActions() ?>
-    <?php $box->beginBulkActions() ?>
-        <?= $box->renderDeleteButton() ?>
-    <?php $box->endBulkActions() ?>
-        <?= $box->renderSearchForm() ?>
+    <?php $box->renderBulkActions([
+        'items' => [
+            $box->renderBulkButton(Yii::t('app', 'Export hosts'), Url::to(['@dns/record/export-hosts'])),
+        ],
+    ]) ?>
+    <?= $box->renderSearchForm() ?>
     <?php $box->end() ?>
 
     <?php $box->beginBulkForm() ?>

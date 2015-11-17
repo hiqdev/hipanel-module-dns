@@ -2,11 +2,11 @@
 
 namespace hipanel\modules\dns\controllers;
 
-use hipanel\modules\dns\models\Zone;
+use hipanel\helpers\ArrayHelper;
+use hipanel\modules\dns\models\Record;
 use hiqdev\hiart\Collection;
 use Yii;
 use yii\data\ArrayDataProvider;
-use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 
@@ -16,7 +16,8 @@ class RecordController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => 'hipanel\actions\RedirectAction',
+                'url' => '@dns/zone',
             ],
             'validate-form' => [
                 'class' => 'hipanel\actions\ValidateFormAction',
@@ -94,6 +95,24 @@ class RecordController extends \hipanel\base\CrudController
         }
 
         throw new BadRequestHttpException('Bad request');
+    }
+
+    public function actionExportHosts(array $type_in = ['a', 'aaaa']) {
+        $searchModel = $this->searchModel(['scenario' => 'export-hosts']);
+        $data = [$searchModel->formName() => ArrayHelper::merge([
+            'hdomain_id_in' => Yii::$app->request->post('selection'),
+        ], Yii::$app->request->post($searchModel->formName(), []))];
+
+        $dataProvider = $searchModel->search($data, ['pagination' => false]);
+
+        if (empty($searchModel->hdomain_id_in)) {
+            return $this->redirect('@dns/zone');
+        }
+
+        return $this->render('export-hosts', [
+            'dataProvider' => $dataProvider,
+            'model' => $searchModel,
+        ]);
     }
 
     /**

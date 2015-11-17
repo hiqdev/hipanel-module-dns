@@ -152,7 +152,7 @@ class Record extends Model
         return ($this->type === 'mx' ? $this->no . ' ' : '') . $this->value;
     }
 
-    public function getTypes() {
+    public static function getTypes() {
         return [
             'a' => 'A',
             'aaaa' => 'AAAA',
