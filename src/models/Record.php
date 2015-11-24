@@ -9,7 +9,6 @@ use hipanel\modules\dns\validators\MxValueValidator;
 use hipanel\modules\dns\validators\SrvValueValidator;
 use hipanel\modules\dns\validators\TxtValueValidator;
 use hipanel\modules\hosting\models\Hdomain;
-use hipanel\validators\IpValidator;
 use Yii;
 use yii\helpers\Json;
 use yii\web\JsExpression;
@@ -55,14 +54,14 @@ class Record extends Model
             /// Value validations
             /// A
             [
-                ['value'], IpValidator::className(), 'ipv6' => false,
+                ['value'], 'ip', 'ipv6' => false,
                 'when' => $this->buildRuleWhen('a'), 'whenClient' => $this->buildRuleWhenClient('a'),
                 'on' => ['create', 'update']
             ],
 
             /// AAAA
             [
-                ['value'], IpValidator::className(), 'ipv4' => false,
+                ['value'], 'ip', 'ipv4' => false,
                 'when' => $this->buildRuleWhen('aaaa'), 'whenClient' => $this->buildRuleWhenClient('aaaa'),
                 'on' => ['create', 'update']
             ],
