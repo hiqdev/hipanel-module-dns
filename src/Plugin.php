@@ -25,14 +25,18 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
                 'class' => 'hipanel\modules\dns\Module',
             ],
         ],
-        'translations' => [
-            'hipanel/dns' => [
-                'class' => 'yii\i18n\PhpMessageSource',
-                'basePath' => '@hipanel/modules/dns/messages',
-                'fileMap' => [
-                    'hipanel/dns' => 'dns.php'
-                ]
-            ]
-        ]
+        'components' => [
+            'i18n' => [
+                'translations' => [
+                    'hipanel/dns' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'basePath' => '@hipanel/modules/dns/messages',
+                        'fileMap' => [
+                            'hipanel/dns' => 'dns.php'
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ];
 }
