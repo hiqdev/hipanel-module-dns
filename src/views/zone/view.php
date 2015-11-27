@@ -25,53 +25,59 @@ Pjax::begin([
     'enablePushState' => false,
 ]);
 ?>
-<div class="row">
-    <div class="col-md-12">
-        <?php
-        $exampleModel = new Record([
-            'domain' => $model->domain,
-            'hdomain_id' => $model->id,
-            'ttl' => 7200,
-            'scenario' => 'create',
-        ]);
 
-        echo $this->render('/record/_form', [
-            'model' => $exampleModel
-        ]);
-        ?>
-    </div>
-</div>
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+        <h4><i class="fa fa-info-circle"></i>&nbsp;&nbsp;Some important info!</h4>
 
-<div class="row">
-    <div class="col-md-12">
-        <?php echo RecordGridView::widget([
-            'dataProvider' => $recordsDataProvider,
-            'options' => [
-                'class' => '',
-            ],
-            'columns' => [
-                'fqdn',
-                [
-                    'attribute' => 'type',
-                    'options' => [
-                        'style' => 'width: 3%;'
-                    ],
-                    'value' => function ($model) {
-                        return strtoupper($model->type);
-                    }
-                ],
-                'value',
-                [
-                    'attribute' => 'ttl',
-                    'options' => [
-                        'style' => 'width: 5%;'
-                    ],
-                ],
-                'actions'
-            ]
-        ]); ?>
+        <p>Пропишите наши ДНС что бы указанные записи заработали</p>
     </div>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <?php
+            $exampleModel = new Record([
+                'domain' => $model->domain,
+                'hdomain_id' => $model->id,
+                'ttl' => 7200,
+                'scenario' => 'create',
+            ]);
+
+            echo $this->render('/record/_form', [
+                'model' => $exampleModel,
+            ]);
+            ?>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <?php echo RecordGridView::widget([
+                'dataProvider' => $recordsDataProvider,
+                'options' => [
+                    'class' => '',
+                ],
+                'columns' => [
+                    'fqdn',
+                    [
+                        'attribute' => 'type',
+                        'options' => [
+                            'style' => 'width: 3%;',
+                        ],
+                        'value' => function ($model) {
+                            return strtoupper($model->type);
+                        },
+                    ],
+                    'value',
+                    [
+                        'attribute' => 'ttl',
+                        'options' => [
+                            'style' => 'width: 5%;',
+                        ],
+                    ],
+                    'actions',
+                ],
+            ]); ?>
+        </div>
+    </div>
 
 <?php
 Pjax::end();
