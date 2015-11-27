@@ -4,9 +4,11 @@ use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
 use hipanel\widgets\Pjax;
 use yii\data\ArrayDataProvider;
+use yii\web\View;
 
 
 /**
+ * @var $this View
  * @var $model Zone
  * @var $recordsDataProvider ArrayDataProvider
  */
