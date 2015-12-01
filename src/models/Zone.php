@@ -24,7 +24,7 @@ class Zone extends Model
         return [
             [['id', 'client_id', 'seller_id', 'account_id', 'server_id'], 'integer'],
             [['domain', 'client', 'seller', 'name', 'account', 'server'], 'safe'],
-            [['url_fw', 'dns_on', 'is_reg_domain'], 'boolean'],
+            [['url_fw', 'dns_on', 'is_reg_domain', 'is_served'], 'boolean'],
             [['nss', 'mail', 'park'], 'safe'],
         ];
     }
