@@ -2,6 +2,7 @@
 
 namespace hipanel\modules\dns\controllers;
 
+use hipanel\actions\IndexAction;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
@@ -12,7 +13,7 @@ class ZoneController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\IndexAction',
+                'class' => IndexAction::class,
             ],
         ];
     }

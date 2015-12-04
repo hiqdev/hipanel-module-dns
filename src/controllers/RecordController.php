@@ -2,6 +2,8 @@
 
 namespace hipanel\modules\dns\controllers;
 
+use hipanel\actions\RedirectAction;
+use hipanel\actions\ValidateFormAction;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\Record;
 use hiqdev\hiart\Collection;
@@ -16,11 +18,11 @@ class RecordController extends \hipanel\base\CrudController
     {
         return [
             'index' => [
-                'class' => 'hipanel\actions\RedirectAction',
+                'class' => RedirectAction::class,
                 'url' => '@dns/zone',
             ],
             'validate-form' => [
-                'class' => 'hipanel\actions\ValidateFormAction',
+                'class' => ValidateFormAction::class,
             ],
         ];
     }
