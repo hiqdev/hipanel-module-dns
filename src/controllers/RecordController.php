@@ -6,6 +6,7 @@ use hipanel\actions\RedirectAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\Record;
+use hipanel\modules\dns\models\Zone;
 use hiqdev\hiart\Collection;
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -73,7 +74,7 @@ class RecordController extends \hipanel\base\CrudController
             Yii::$app->session->addFlash('success', Yii::t('app', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
             return $this->renderZoneView($collection->first->hdomain_id);
         }
-        throw new BadRequestHttpException('Bad request123');
+        throw new BadRequestHttpException('Bad request');
     }
 
     /**
@@ -125,8 +126,8 @@ class RecordController extends \hipanel\base\CrudController
      * @throws NotFoundHttpException
      */
     public function renderZoneView($id) {
-        if (($model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
-            throw new NotFoundHttpException('DNS zone does not exists');
+        if (($model = (new Zone())->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
+            throw new NotFoundHttpException('DNS zone does not exist');
         }
         $recordsDataProvider = new ArrayDataProvider(['allModels' => $model->records]);
 

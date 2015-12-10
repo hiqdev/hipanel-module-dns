@@ -129,6 +129,6 @@ $this->registerJs("$('#{$form->id} .record-item').on('change', '[data-attribute=
     return true;
 });
 
-$('#{$form->id}').on('submit', function () {
+$('#{$form->id}').on('beforeSubmit', function () {
     $(this).find('.btn').attr('disabled', true);
 });"); ?>
