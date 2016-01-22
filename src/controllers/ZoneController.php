@@ -14,6 +14,18 @@ class ZoneController extends \hipanel\base\CrudController
         return [
             'index' => [
                 'class' => IndexAction::class,
+                'filterStorageMap' => [
+                    'domain' => [
+                        'dns.zone.domain | hosting.domain.domain_like | domain.domain.domain_like',
+                        'dns.zone.domain'
+                    ],
+                    'ips' => 'hosting.ip.ip_in',
+                    'dns_on' => 'domain.domain.dns_on',
+                    'client_id' => 'client.client.id',
+                    'seller_id' => 'client.client.seller_id',
+                    'server' => 'server.server.name',
+                    'account' => 'hosting.account.login',
+                ]
             ],
         ];
     }
