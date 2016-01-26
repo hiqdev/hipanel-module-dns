@@ -3,6 +3,9 @@ hiqdev/hipanel-module-dns commits history
 
 ## Under development
 
+- Fixed minor issues
+    - de89bd1 2016-01-26 * domain column in ZoneGridView to be main column with link to details (sol@hiqdev.com)
+    - bb07359 2016-01-26 rehideved (sol@hiqdev.com)
     - dd0c69a 2016-01-22 ZoneController::IndexAction - added filterStorageMap (d.naumenko.a@gmail.com)
     - 8b691d4 2015-12-10 Fixed DNS record edit (d.naumenko.a@gmail.com)
     - 82deeba 2015-12-04 Classes notation changed from pathtoClassName to PHP 5.6 ClassName::class (d.naumenko.a@gmail.com)
