@@ -1,18 +1,12 @@
 <?php
-/**
- * @link    http://hiqdev.com/hipanel-module-hosting
- * @license http://hiqdev.com/hipanel-module-hosting/license
- * @copyright Copyright (c) 2015 HiQDev
- */
+
 use hipanel\modules\dns\grid\ZoneGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
 use yii\helpers\Url;
 
 $this->title = Yii::t('hipanel/dns', 'DNS zones');
-$this->breadcrumbs->setItems([
-    $this->title,
-]);
+$this->breadcrumbs[] = $this->title;
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list'; ?>
 
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
