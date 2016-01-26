@@ -28,6 +28,9 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'label' => Yii::t('hipanel/dns', 'Zone'),
                 'attribute' => 'name',
             ],
+            'domain' => [
+                'class' => MainColumn::className(),
+            ],
             'actions' => [
                 'class' => ActionColumn::className(),
                 'template' => '{view}',
