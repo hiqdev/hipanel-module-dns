@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\widgets;
 
 use Closure;
@@ -10,11 +19,9 @@ use yii\base\Widget;
 use yii\bootstrap\Progress;
 use yii\helpers\Json;
 use yii\helpers\Url;
-use yii\web\JsExpression;
 
 /**
- * Class DnzZoneEditWidget offers a placeholder for PJAX loader
- * @package hipanel\modules\dns\widgets
+ * Class DnzZoneEditWidget offers a placeholder for PJAX loader.
  */
 class DnsZoneEditWidget extends Widget
 {
@@ -65,7 +72,7 @@ class DnsZoneEditWidget extends Widget
     }
 
     /**
-     * Registers JS
+     * Registers JS.
      */
     public function registerClientScript()
     {

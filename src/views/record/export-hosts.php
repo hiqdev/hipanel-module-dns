@@ -5,8 +5,7 @@ use hipanel\widgets\Box;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 
-
-/**
+/*
  * @var $model RecordSearch
  * @var $dataProvider ActiveDataProvider
  */
@@ -16,7 +15,6 @@ $this->breadcrumbs->setItems([
     ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']],
     $this->title,
 ]);
-
 
 Box::begin();
 

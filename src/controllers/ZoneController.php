@@ -1,9 +1,17 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\IndexAction;
-use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -17,7 +25,7 @@ class ZoneController extends \hipanel\base\CrudController
                 'filterStorageMap' => [
                     'domain' => [
                         'dns.zone.domain | hosting.domain.domain_like | domain.domain.domain_like',
-                        'dns.zone.domain'
+                        'dns.zone.domain',
                     ],
                     'ips' => 'hosting.ip.ip_in',
                     'dns_on' => 'domain.domain.dns_on',
@@ -25,7 +33,7 @@ class ZoneController extends \hipanel\base\CrudController
                     'seller_id' => 'client.client.seller_id',
                     'server' => 'server.server.name',
                     'account' => 'hosting.account.login',
-                ]
+                ],
             ],
         ];
     }
@@ -39,7 +47,7 @@ class ZoneController extends \hipanel\base\CrudController
 
         return $this->render('view', [
             'model' => $model,
-            'recordsDataProvider' => $recordsDataProvider
+            'recordsDataProvider' => $recordsDataProvider,
         ]);
     }
 }

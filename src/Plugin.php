@@ -1,12 +1,12 @@
 <?php
 
 /*
- * Hipanel Module Dns
+ * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns;
@@ -32,7 +32,7 @@ class Plugin extends \hiqdev\pluginmanager\Plugin
                         'class' => 'yii\i18n\PhpMessageSource',
                         'basePath' => '@hipanel/modules/dns/messages',
                         'fileMap' => [
-                            'hipanel/dns' => 'dns.php'
+                            'hipanel/dns' => 'dns.php',
                         ],
                     ],
                 ],

@@ -1,4 +1,5 @@
 <?php
+
 use hipanel\modules\dns\grid\RecordGridView;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
@@ -7,19 +8,16 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\web\View;
 
-
-/**
+/*
  * @var $this View
  * @var $model Zone
  * @var $recordsDataProvider ArrayDataProvider
  */
 
-$this->title = $model->domain;
-$this->subtitle = Yii::t('hipanel/dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']],
-    $this->title,
-]);
+$this->title                    = $model->domain;
+$this->subtitle                 = Yii::t('hipanel/dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
+$this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']];
+$this->params['breadcrumbs'][]  = $this->title;
 
 Pjax::begin([
     'id' => 'dns_zone_view',
@@ -37,7 +35,7 @@ foreach ($records as $record) {
 \hipanel\helpers\ArrayHelper::multisort($ns_servers, 0);
 ?>
 
-    <?php if ($model->is_served === false && count($ns_servers)) { ?>
+    <?php if ($model->is_served === false && count($ns_servers)) : ?>
         <div class="alert alert-warning alert-dismissible fade in" role="alert">
             <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel/dns', 'Set NS servers for domain {domain}', ['domain' => $model->domain]) ?></h4>
 
@@ -48,7 +46,7 @@ foreach ($records as $record) {
                 ]) ?>
             </p>
         </div>
-    <?php } ?>
+    <?php endif ?>
     <div class="row">
         <div class="col-md-12">
             <?php

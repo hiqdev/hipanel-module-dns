@@ -1,12 +1,11 @@
 package:
+    type:           yii2-extension
     name:           hipanel-module-dns
     namespace:      hipanel\modules\dns
-    label:          HipanelModuleDns
-    title:          Hipanel Module Dns
-    type:           yii2-extension
+    label:          HiPanel DNS
+    title:          HiPanel DNS Module
     keywords:       hipanel, module, dns
-    year:           2015
 
 require:
-    hiqdev/hidev-config:        "*"
-    hiqdev/hidev-config-php:    "*"
+    hiqdev/hidev-php:    "*"
+    hiqdev/hidev-vendor: "*"

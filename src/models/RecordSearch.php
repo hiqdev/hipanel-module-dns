@@ -1,9 +1,17 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\models;
 
 use hipanel\helpers\ArrayHelper;
-use Yii;
 use yii\helpers\StringHelper;
 
 class RecordSearch extends Record
@@ -12,7 +20,8 @@ class RecordSearch extends Record
         searchAttributes as defaultSearchAttributes;
     }
 
-    public function rules() {
+    public function rules()
+    {
         return [
             [['type_in', 'hdomain_id_in'], 'filter', 'filter' => function ($value) {
                 $res = StringHelper::explode($value, ',', true, true);
@@ -25,7 +34,7 @@ class RecordSearch extends Record
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function searchAttributes()
     {

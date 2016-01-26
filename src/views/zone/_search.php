@@ -3,7 +3,7 @@ use hipanel\modules\client\widgets\combo\ClientCombo;
 use hipanel\modules\client\widgets\combo\SellerCombo;
 use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
-use hiqdev\combo\StaticCombo;
+
 ?>
 
 <div class="col-md-6">

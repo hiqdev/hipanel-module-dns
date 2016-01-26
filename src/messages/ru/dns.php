@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 return [
     'Zone' => 'Зона',
     'DNS zones' => 'DNS зоны',
@@ -21,5 +30,5 @@ return [
     'Registered domain' => 'Загегистрированным доменом',
     'Bound to' => 'Связан с',
     'Set NS servers for domain {domain}' => 'Установите NS сервера для домена {domain}',
-    'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.' => 'Эта DNS зона относится к зарегистрированнму доменму {domain_link}, но он не настроен правильно. Для того, чтобы эти записи работали, пожалуйста, установите следующие NS сервера в настройках домена {ns_servers}.'
+    'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.' => 'Эта DNS зона относится к зарегистрированнму доменму {domain_link}, но он не настроен правильно. Для того, чтобы эти записи работали, пожалуйста, установите следующие NS сервера в настройках домена {ns_servers}.',
 ];

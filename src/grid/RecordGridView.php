@@ -1,31 +1,40 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\grid;
 
 use hipanel\grid\ActionColumn;
+use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
 use hipanel\widgets\ModalButton;
 use Yii;
-use hipanel\grid\MainColumn;
 use yii\bootstrap\Progress;
 use yii\helpers\Html;
 use yii\helpers\Json;
 
 class RecordGridView extends \hipanel\grid\BoxedGridView
 {
-    static public function defaultColumns()
+    public static function defaultColumns()
     {
         return [
             'fqdn' => [
                 'attribute' => 'fqdn',
                 'value' => function ($model) {
                     return $model->fqdn;
-                }
+                },
             ],
             'type' => [
                 'value' => function ($model) {
                     return strtoupper($model->type);
-                }
+                },
             ],
             'value' => [
                 'value' => function ($model) {
@@ -43,7 +52,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 'template'             => '{update} {delete}',
                 'visibleButtonsCount'  => 2,
                 'options'              => [
-                    'style' => 'width: 15%'
+                    'style' => 'width: 15%',
                 ],
                 'buttons'              => [
                     'update'    => function ($url, $model, $key) {
@@ -56,7 +65,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             'data' => [
                                 'record_id' => $model->id,
                                 'hdomain_id' => $model->hdomain_id,
-                                'load-url' => Url::to(['@dns/record/update', 'hdomain_id' => $model->hdomain_id, 'id' => $model->id])
+                                'load-url' => Url::to(['@dns/record/update', 'hdomain_id' => $model->hdomain_id, 'id' => $model->id]),
                             ],
                         ]);
 
@@ -64,7 +73,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             'id' => 'progress-bar',
                             'percent' => 100,
                             'barOptions' => ['class' => 'active progress-bar-striped', 'style' => 'width: 100%'],
-                        ]) . "</td></tr>");
+                        ]) . '</td></tr>');
 
                         Yii::$app->view->registerJs("
                             $('.edit-dns-toggle').click(function () {
@@ -104,7 +113,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             'scenario' => 'delete',
                             'submit' => ModalButton::SUBMIT_PJAX,
                             'form' => [
-                                'action' => Url::to('@dns/record/delete')
+                                'action' => Url::to('@dns/record/delete'),
                             ],
                             'button' => [
                                 'class' => 'btn btn-default btn-xs',
@@ -117,15 +126,15 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                                     'label' => Yii::t('hipanel/dns', 'Delete record'),
                                     'data-loading-text' => Yii::t('hipanel/dns', 'Deleting record...'),
                                     'class' => 'btn btn-danger',
-                                ]
+                                ],
                             ],
                             'body' => function ($model) {
                                 echo Html::activeHiddenInput($model, 'hdomain_id');
                                 echo Yii::t('hipanel/dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
-                            }
+                            },
                         ]);
-                    }
-                ]
+                    },
+                ],
             ],
         ];
     }

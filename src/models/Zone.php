@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\models;
 
 use hipanel\base\Model;
@@ -29,12 +38,13 @@ class Zone extends Model
         ];
     }
 
-    public function getRecords() {
+    public function getRecords()
+    {
         return $this->hasMany(Record::className(), ['id' => 'hdomain_id']);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels()
     {

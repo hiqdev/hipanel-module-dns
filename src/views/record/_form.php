@@ -2,13 +2,12 @@
 
 use hipanel\helpers\Url;
 use hipanel\modules\dns\models\Record;
-use hipanel\widgets\Box;
 use hipanel\widgets\ModalButton;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\web\View;
 
-/**
+/*
  * @var $model Record
  * @var $this View
  */
@@ -75,7 +74,7 @@ use yii\web\View;
 
             <?php
 
-            if ($model->scenario == 'create') {
+            if ($model->scenario === 'create') {
                 echo Html::submitButton(Yii::t('hipanel', 'Create'), ['class' => 'btn btn-success']);
             } else {
                 echo Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']);
@@ -85,7 +84,7 @@ use yii\web\View;
             echo Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default btn-cancel']);
             echo '&nbsp;';
 
-            if ($model->scenario == 'update') {
+            if ($model->scenario === 'update') {
                 echo ModalButton::widget([
                     'model' => $model,
                     'scenario' => 'delete',

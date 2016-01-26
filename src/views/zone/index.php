@@ -4,7 +4,6 @@
  * @license http://hiqdev.com/hipanel-module-hosting/license
  * @copyright Copyright (c) 2015 HiQDev
  */
-
 use hipanel\modules\dns\grid\ZoneGridView;
 use hipanel\widgets\ActionBox;
 use hipanel\widgets\Pjax;
@@ -25,7 +24,7 @@ $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formNam
             'attributes' => [
                 'client',
                 'domain',
-                'dns_on'
+                'dns_on',
             ],
         ]) ?>
     <?php $box->endActions() ?>

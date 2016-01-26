@@ -1,18 +1,26 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\grid;
 
 use hipanel\grid\ActionColumn;
-use hipanel\helpers\StringHelper;
+use hipanel\grid\MainColumn;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\Label;
 use Yii;
-use hipanel\grid\MainColumn;
 use yii\bootstrap\Html;
 
 class ZoneGridView extends \hipanel\grid\BoxedGridView
 {
-    static public function defaultColumns()
+    public static function defaultColumns()
     {
         return [
             'zone' => [
@@ -22,7 +30,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
             ],
             'actions' => [
                 'class' => ActionColumn::className(),
-                'template' => '{view}'
+                'template' => '{view}',
             ],
             'nss' => [
                 'format' => 'raw',
@@ -49,7 +57,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                         'label' => $model->dns_on ? Yii::t('hipanel/dns', 'Enabled') : Yii::t('hipanel/dns', 'Disabled'),
                         'labelOptions' => [
                             'title' => Yii::t('hipanel/dns', 'Means that the panel will publish DNS records on the NS servers'),
-                        ]
+                        ],
                     ]);
                 },
             ],
@@ -59,7 +67,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     if (Yii::getAlias('@domain') !== null && $model->is_reg_domain) {
                         return Html::a(Yii::t('hipanel/dns', 'Registered domain'), ['@domain/view', 'id' => $model->id]);
-                    } else if ($model->server_id) {
+                    } elseif ($model->server_id) {
                         return Html::a($model->account . '@' . $model->server, ['@hdomain/view', 'id' => $model->id]);
                     } else {
                         return Yii::$app->formatter->nullDisplay;

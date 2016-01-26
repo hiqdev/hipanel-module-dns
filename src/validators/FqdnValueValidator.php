@@ -1,18 +1,25 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\validators;
 
 use yii\validators\RegularExpressionValidator;
 
 /**
- * Validates value of FQDN record
- *
- * @package hipanel\modules\dns\validators
+ * Validates value of FQDN record.
  */
 class FqdnValueValidator extends RegularExpressionValidator
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $pattern = '/^([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(.?)$/';
 
@@ -23,7 +30,7 @@ class FqdnValueValidator extends RegularExpressionValidator
     public $trimTrailingDot = true;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -32,7 +39,7 @@ class FqdnValueValidator extends RegularExpressionValidator
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function validateAttribute($model, $attribute)
     {
@@ -45,7 +52,7 @@ class FqdnValueValidator extends RegularExpressionValidator
     }
 
     /**
-     * Removes trailing dot
+     * Removes trailing dot.
      * @param $value
      * @return string
      */

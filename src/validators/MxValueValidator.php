@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * HiPanel DNS Module
+ *
+ * @link      https://github.com/hiqdev/hipanel-module-dns
+ * @package   hipanel-module-dns
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ */
+
 namespace hipanel\modules\dns\validators;
 
 use Yii;
@@ -10,14 +19,12 @@ use yii\validators\ValidationAsset;
 use yii\web\JsExpression;
 
 /**
- * Validates value of MX record
- *
- * @package hipanel\modules\dns\validators
+ * Validates value of MX record.
  */
 class MxValueValidator extends FqdnValueValidator
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $patternWithPriority = '/^((\d+)\s)?(([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(.?))$/';
 
@@ -32,7 +39,7 @@ class MxValueValidator extends FqdnValueValidator
     public $priorityAttribute = 'no';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function validateAttribute($model, $attribute)
     {
@@ -46,7 +53,8 @@ class MxValueValidator extends FqdnValueValidator
      * @param $model Model
      * @param $attribute
      */
-    public function extractPriority($model, $attribute) {
+    public function extractPriority($model, $attribute)
+    {
         $priorityAttribute = $this->priorityAttribute;
         preg_match($this->priorityExtractPattern, $model->$attribute, $matches);
         if ($matches[2] !== '') {
