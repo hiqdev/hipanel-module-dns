@@ -57,7 +57,14 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 'buttons'              => [
                     'update'    => function ($url, $model, $key) {
                         if ($model->is_system) {
-                            return '';
+                            return Html::tag('div', Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('hipanel', 'Update'), null, [
+                                'class' => 'btn btn-default btn-xs disabled',
+                            ]), [
+                                'data-placement' => 'top',
+                                'data-toggle' => 'tooltip',
+                                'title' => Yii::t('hipanel/dns', 'This record was created by hosting panel automatically and cannot be updated'),
+                                'style' => 'display: inline-block; cursor: not-allowed;',
+                            ]);
                         }
 
                         $data = Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('hipanel', 'Update'), null, [
@@ -108,6 +115,17 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                         return $data;
                     },
                     'delete'    => function ($url, $model, $key) {
+                        if ($model->type === 'ns' && $model->is_system) {
+                            return Html::tag('div', Html::a('<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'), null, [
+                                'class' => 'btn btn-default btn-xs disabled',
+                            ]), [
+                                'data-placement' => 'top',
+                                'data-toggle' => 'tooltip',
+                                'title' => Yii::t('hipanel/dns', 'This record is important for the domain zone viability and can not be deleted'),
+                                'style' => 'display: inline-block; cursor: not-allowed;',
+                            ]);
+                        }
+
                         return ModalButton::widget([
                             'model' => $model,
                             'scenario' => 'delete',
