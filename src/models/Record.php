@@ -49,11 +49,13 @@ class Record extends Model
 
             /// Name validations
             [['name'], DomainPartValidator::className(),
-                'when' => $this->buildRuleWhen(['srv', 'txt'], true), 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt'], true),
+                'when' => $this->buildRuleWhen(['srv', 'txt', 'cname'], true),
+                'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname'], true),
                 'on' => ['create', 'update', 'delete'],
             ],
             [['name'], DomainPartValidator::className(), 'extended' => true,
-                'when' => $this->buildRuleWhen(['srv', 'txt']), 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt']),
+                'when' => $this->buildRuleWhen(['srv', 'txt', 'cname']),
+                'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname']),
                 'on' => ['create', 'update', 'delete'],
             ],
 
