@@ -25,12 +25,12 @@ class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInter
     {
         return [
             'dns' => [
-                'label' => Yii::t('app', 'DNS'),
+                'label' => Yii::t('hipanel/dns', 'DNS'),
                 'url'   => ['/dns/zone/index'],
                 'icon'  => 'fa-globe',
                 'items' => [
                     'zones' => [
-                        'label' => Yii::t('app', 'Domains'),
+                        'label' => Yii::t('hipanel/dns', 'Domains'),
                         'url'   => ['/dns/zone/index'],
                     ],
                 ],

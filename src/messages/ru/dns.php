@@ -10,6 +10,8 @@
  */
 
 return [
+    'DNS' => 'DNS',
+    'Domains' => 'Домены',
     'Zone' => 'Зона',
     'DNS zones' => 'DNS зоны',
     'NS servers' => 'NS сервера',
