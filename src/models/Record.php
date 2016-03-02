@@ -145,6 +145,14 @@ class Record extends Model
         };
     }
 
+    /**
+     * Builds the JS expression for Yii `whenClient` validation in order to apply validation to only a certain
+     * list of DNS record types.
+     *
+     * @param array|string $type types, that are must be validated with the rule
+     * @param bool $not inverts $type
+     * @return JsExpression
+     */
     protected function buildRuleWhenClient($type, $not = false)
     {
         $not = Json::encode($not);
