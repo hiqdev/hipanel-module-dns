@@ -137,6 +137,14 @@ class Record extends Model
         ];
     }
 
+    /**
+     * Builds a closure for Yii server-side validation property `when` in order to apply the rule to only a certain
+     * list of DNS record types.
+     *
+     * @param array|string $type types, that are must be validated with the rule
+     * @param bool $not inverts $type
+     * @return \Closure
+     */
     protected function buildRuleWhen($type, $not = false)
     {
         return function ($model) use ($type, $not) {
