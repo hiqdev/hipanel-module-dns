@@ -16,9 +16,7 @@ use yii\helpers\StringHelper;
 
 class RecordSearch extends Record
 {
-    use \hipanel\base\SearchModelTrait {
-        searchAttributes as defaultSearchAttributes;
-    }
+    use \hipanel\base\SearchModelTrait;
 
     public function rules()
     {
@@ -31,14 +29,5 @@ class RecordSearch extends Record
             [['type_in'], 'each', 'rule' => ['in', 'range' => array_keys($this->getTypes())], 'on' => ['export-hosts']],
             [['hdomain_id_in'], 'required', 'on' => ['export-hosts']],
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function searchAttributes()
-    {
-        return ArrayHelper::merge($this->defaultSearchAttributes(), [
-        ]);
     }
 }
