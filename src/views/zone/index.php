@@ -24,7 +24,7 @@ Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true]))
     <?php $box->endActions() ?>
     <?php $box->renderBulkActions([
         'items' => [
-            $box->renderBulkButton(Yii::t('app', 'Export hosts'), Url::to(['@dns/record/export-hosts'])),
+            $box->renderBulkButton(Yii::t('hipanel/dns', 'Export DNS records'), Url::to(['@dns/record/export-hosts'])),
         ],
     ]) ?>
     <?= $box->renderSearchForm() ?>
