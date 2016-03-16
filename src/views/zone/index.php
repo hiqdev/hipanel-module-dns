@@ -7,9 +7,9 @@ use yii\helpers\Url;
 
 $this->title = Yii::t('hipanel/dns', 'DNS zones');
 $this->breadcrumbs[] = $this->title;
-$this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? 'filtered list' : 'full list'; ?>
+$this->subtitle = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 
-<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
+Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])); ?>
 
 <?php $box = ActionBox::begin(['model' => $model, 'dataProvider' => $dataProvider]) ?>
     <?php $box->beginActions() ?>
