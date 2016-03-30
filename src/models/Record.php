@@ -214,6 +214,26 @@ class Record extends Model
         ]);
     }
 
+    public function exportForBind()
+    {
+        if ($this->type === 'mx') {
+            $value = $this->no . "\t" . $this->value;
+        } elseif ($this->type() === 'txt') {
+            $value = '"' . $this->value . '"';
+        } else {
+            $value = $this->value;
+        }
+
+        if (in_array($this->type, ['ns', 'mx', 'cname'])) {
+            $value .= '.';
+        }
+
+        $name = $this->name ?: '@';
+        $type = strtoupper($this->type);
+
+        return "$name\t\tIN\t$type\t$value";
+    }
+
     /**
      * @return array
      */

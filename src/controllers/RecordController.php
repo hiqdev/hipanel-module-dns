@@ -110,7 +110,7 @@ class RecordController extends \hipanel\base\CrudController
         throw new BadRequestHttpException('Bad request');
     }
 
-    public function actionExportHosts(array $type_in = ['a', 'aaaa'])
+    public function actionExportHosts(array $type_in = ['a', 'aaaa', 'cname', 'txt', 'soa', 'ns', 'mx', 'srv'])
     {
         $searchModel = $this->searchModel(['scenario' => 'export-hosts']);
         $data = [$searchModel->formName() => ArrayHelper::merge([

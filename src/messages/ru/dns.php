@@ -19,7 +19,7 @@ return [
     'Disabled' => 'Отключен',
     'Means that the panel will publish DNS records on the NS servers' => 'Означает, что панель будет публиковать DNS записи на NS сервера',
     'DNS zone for domain {domain}' => 'DNS зона для домена {domain}',
-    'Export DNS records' => 'Экспорт DNS записей',
+    'Export DNS records' => 'Экспортировать DNS записи',
     'Confirm DNS record deleting' => 'Подтвердите удаление DNS записи',
     'Delete record' => 'Удалить запись',
     'Deleting record...' => 'Удаление записи...',
@@ -36,4 +36,6 @@ return [
     '{0, plural, one{DNS record} other{# DNS records}} updated successfully' => '{0, plural, one{DNS запись успешно обновлена} few{# DNS записи успешно обновлено} other{# DNS записей успешно обновлено}}',
     '{0, plural, one{DNS record} other{# DNS records}} deleted successfully' => '{0, plural, one{DNS запись успешно удалена} few{# DNS записи успешно удалено} other{# DNS записей успешно удалено}}',
     '{0, plural, one{DNS record} other{# DNS records}} created successfully' => '{0, plural, one{DNS запись успешно создана} few{# DNS записи успешно созданы} other{# DNS заспией успешно создано}}',
+    'DNS records export' => 'Экспорт DNS записей',
+    'Select record types you want to export' => 'Выберите типы записей, которые вы хотите экспортировать',
 ];

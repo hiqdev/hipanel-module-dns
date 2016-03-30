@@ -18,10 +18,19 @@ $this->breadcrumbs->setItems([
 
 Box::begin();
 
+$records = $dataProvider->getModels();
+\yii\helpers\ArrayHelper::multisort($records, function ($record) {
+    switch ($record->type) {
+        case 'soa': return 1; break;
+        case 'ns': return 2; break;
+        case 'mx': return 3; break;
+        default: return $record->id; break;
+    }
+});
 $list = [];
 
-foreach ($dataProvider->getModels() as $record) {
-    $list[] = $record->value . ' ' . $record->fqdn;
+foreach ($records as $record) {
+    $list[] = $record->exportForBind();
 }
 
 Box::begin();
