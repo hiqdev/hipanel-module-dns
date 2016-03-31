@@ -1,10 +1,16 @@
 package:
     type:           yii2-extension
     name:           hipanel-module-dns
-    namespace:      hipanel\modules\dns
-    label:          HiPanel DNS
     title:          HiPanel DNS Module
+    headline:       HiPanel DNS
     keywords:       hipanel, module, dns
+    namespace:      hipanel\modules\dns
+    description: |
+        [![Logo](https://raw.githubusercontent.com/hiqdev/hipanel-core/master/docs/logo.png)](https://hipanel.com/)
+
+        [HiPanel](http://hipanel.com) is next generation control panel for hosting, domains and more.
+
+        This package provides DNS management.
 
 require:
     hiqdev/hidev-php:    "*"

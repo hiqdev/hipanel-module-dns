@@ -3,7 +3,20 @@ hiqdev/hipanel-module-dns commits history
 
 ## Under development
 
+    - 7846a4a 2016-03-31 fixed Travis build with `hiqdev/composer-asset-plugin` (sol@hiqdev.com)
+- Added DNS records export in BIND format
+    - 6f15fdd 2016-03-30 Added DNS records export in BIND format (d.naumenko.a@gmail.com)
 - Fixed minor issues
+    - f1511fe 2016-03-16 Translations update (d.naumenko.a@gmail.com)
+    - 6f38cda 2016-03-16 Added missing translation (d.naumenko.a@gmail.com)
+    - f2c773b 2016-03-05 RecordSearch - removed empty unused method (d.naumenko.a@gmail.com)
+    - 84d4f7f 2016-03-03 Record - update PHPDoc (d.naumenko.a@gmail.com)
+    - c89ed30 2016-03-02 Record - update PHPDoc (d.naumenko.a@gmail.com)
+    - 7e98a31 2016-02-19 Translations updated (d.naumenko.a@gmail.com)
+    - 942fe30 2016-02-05 Record - check of record name switched to extended for `cname` records (d.naumenko.a@gmail.com)
+    - 2bdf5f9 2016-02-04 ZoneController::indexAction - removed defauls from the filterStorageMap (d.naumenko.a@gmail.com)
+    - 2b96331 2016-01-27 DNS record row - added inactive update/delete buttons (d.naumenko.a@gmail.com)
+    - 23d82e6 2016-01-27 spelling, minor (d.naumenko.a@gmail.com)
     - de89bd1 2016-01-26 * domain column in ZoneGridView to be main column with link to details (sol@hiqdev.com)
     - bb07359 2016-01-26 rehideved (sol@hiqdev.com)
     - dd0c69a 2016-01-22 ZoneController::IndexAction - added filterStorageMap (d.naumenko.a@gmail.com)
