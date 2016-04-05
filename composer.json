@@ -46,9 +46,6 @@
         "hiqdev/hipanel-core": "*",
         "hiqdev/hipanel-module-client": "*"
     },
-    "require-dev": {
-        "hiqdev/composer-asset-plugin": "*@dev"
-    },
     "autoload": {
         "psr-4": {
             "hipanel\\modules\\dns\\": "src"
