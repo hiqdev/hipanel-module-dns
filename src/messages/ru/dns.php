@@ -23,7 +23,7 @@ return [
     'Confirm DNS record deleting' => 'Подтвердите удаление DNS записи',
     'Delete record' => 'Удалить запись',
     'Deleting record...' => 'Удаление записи...',
-    'Are you sure, that you want to delete record' => 'Вы действительно хотите удалить запись {name}?',
+    'Are you sure, that you want to delete record {name}' => 'Вы действительно хотите удалить запись {name}?',
     '{attribute} is not a valid domain name part' => '{attribute} не является правильной частью доменного имени',
     '{attribute} is not a valid domain name' => '{attribute} не является правильным доменом',
     'TTL' => 'TTL',
@@ -38,4 +38,6 @@ return [
     '{0, plural, one{DNS record} other{# DNS records}} created successfully' => '{0, plural, one{DNS запись успешно создана} few{# DNS записи успешно созданы} other{# DNS заспией успешно создано}}',
     'DNS records export' => 'Экспорт DNS записей',
     'Select record types you want to export' => 'Выберите типы записей, которые вы хотите экспортировать',
+    'This record was created by hosting panel automatically and cannot be updated' => 'Эта запись была создана хостинговой панелью автоматически и не может быть изменена',
+    'This record is important for the domain zone viability and can not be deleted' => 'Эта запись необходима для работы доменной зоны и не может быть удалена',
 ];
