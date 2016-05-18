@@ -43,13 +43,29 @@
         }
     ],
     "require": {
-        "hiqdev/hipanel-core": "*",
-        "hiqdev/hipanel-module-client": "*"
+        "hiqdev/hipanel-core": "<2.0 || dev-master",
+        "hiqdev/hipanel-module-client": "<2.0 || dev-master"
+    },
+    "require-dev": {
+        "hiqdev/hidev-php": "<2.0",
+        "hiqdev/hidev-vendor": "<2.0"
     },
     "autoload": {
         "psr-4": {
             "hipanel\\modules\\dns\\": "src"
         }
     },
-    "minimum-stability": "dev"
+    "extra": {
+        "config-plugin": {
+            "hisite": "src/config/hisite.php",
+            "hidev": "src/config/hidev.php"
+        }
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
 }
