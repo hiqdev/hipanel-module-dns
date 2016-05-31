@@ -12,6 +12,7 @@
 namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\OrientationAction;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -32,6 +33,12 @@ class ZoneController extends \hipanel\base\CrudController
                     'account' => 'hosting.account.login',
                 ],
             ],
+            'set-orientation' => [
+                'class' => OrientationAction::class,
+                'allowedRoutes' => [
+                    '@zone/index'
+                ]
+            ]
         ];
     }
 
