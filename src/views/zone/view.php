@@ -67,7 +67,6 @@ foreach ($records as $record) {
     <div class="row">
         <div class="col-md-12">
             <?php echo RecordGridView::widget([
-                'boxed' => false,
                 'dataProvider' => $recordsDataProvider,
                 'options' => [
                     'class' => '',
