@@ -30,6 +30,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
             ],
             'domain' => [
                 'class' => MainColumn::className(),
+                'filterAttribute' => 'domain_like',
             ],
             'actions' => [
                 'class' => ActionColumn::className(),
