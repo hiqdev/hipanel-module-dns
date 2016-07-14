@@ -23,7 +23,7 @@ return [
     'Confirm DNS record deleting' => 'Подтвердите удаление DNS записи',
     'Delete record' => 'Удалить запись',
     'Deleting record...' => 'Удаление записи...',
-    'Are you sure, that you want to delete record {name}' => 'Вы действительно хотите удалить запись {name}?',
+    'Are you sure, that you want to delete record {name}?' => 'Вы действительно хотите удалить запись {name}?',
     '{attribute} is not a valid domain name part' => '{attribute} не является правильной частью доменного имени',
     '{attribute} is not a valid domain name' => '{attribute} не является правильным доменом',
     'TTL' => 'TTL',
