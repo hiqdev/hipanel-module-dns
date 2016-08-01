@@ -26,8 +26,8 @@ class ZoneSearch extends Zone
     public function searchAttributes()
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
-            'nss_like' => Yii::t('app', 'NS servers'),
-            'domain_like' => Yii::t('app', 'Domain'),
+            'nss_like'      => Yii::t('hipanel', 'Name Servers'),
+            'domain_like'   => Yii::t('hipanel', 'Domain'),
         ]);
     }
 }
