@@ -11,10 +11,8 @@ use yii\helpers\Html;
  */
 
 $this->title = Yii::t('hipanel/dns', 'DNS records export');
-$this->breadcrumbs->setItems([
-    ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']],
-    $this->title,
-]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']];
+$this->params['breadcrumbs'][] = $this->title;
 
 Box::begin();
 
