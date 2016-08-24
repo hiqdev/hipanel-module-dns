@@ -15,7 +15,7 @@ use yii\web\View;
  */
 
 $this->title                    = $model->domain;
-$this->subtitle                 = Yii::t('hipanel/dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
+$this->params['subtitle']       = Yii::t('hipanel/dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
 $this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']];
 $this->params['breadcrumbs'][]  = $this->title;
 
@@ -33,6 +33,7 @@ foreach ($records as $record) {
     }
 }
 \hipanel\helpers\ArrayHelper::multisort($ns_servers, 0);
+
 ?>
 
     <?php if ($model->is_served === false && count($ns_servers)) : ?>
