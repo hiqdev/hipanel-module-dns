@@ -31,8 +31,17 @@ return [
             ],
         ],
         'menuManager' => [
-            'menus' => [
-                'dns' => \hipanel\modules\dns\SidebarMenu::class,
+            'items' => [
+                'sidebar' => [
+                    'add' => [
+                        'dns' => [
+                            'menu' => \hipanel\modules\dns\menus\SidebarMenu::class,
+                            'where' => [
+                                'before' => ['server', 'domains'],
+                            ],
+                        ],
+                    ],
+                ],
             ],
         ],
     ],

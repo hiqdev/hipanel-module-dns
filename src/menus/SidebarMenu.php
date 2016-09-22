@@ -9,16 +9,15 @@
  * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
  */
 
-namespace hipanel\modules\dns;
+namespace hipanel\modules\dns\menus;
 
 use Yii;
 
-class SidebarMenu extends \hipanel\base\Menu implements \yii\base\BootstrapInterface
+class SidebarMenu extends \hiqdev\menumanager\Menu
 {
     protected $_addTo = 'sidebar';
 
     protected $_where = [
-        'before' => ['server', 'domains'],
     ];
 
     public function items()
