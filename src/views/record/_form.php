@@ -14,7 +14,7 @@ use yii\web\View;
 ?>
 
 <?php $form = ActiveForm::begin([
-    'id' => 'dynamic-form-' . $model->id ?: time(),
+    'id' => 'dynamic-form-' . ($model->id ?: time()),
     'action' => '@dns/record/' . $model->scenario,
     'enableAjaxValidation' => true,
     'options' => [

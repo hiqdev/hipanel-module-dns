@@ -77,7 +77,7 @@ class DnsZoneEditWidget extends Widget
     public function registerClientScript()
     {
         $id = $this->pjaxOptions['id'];
-        $url = Json::htmlEncode($this->buildUrl());
+        $url = Json::encode($this->buildUrl());
         $js = "
             $.pjax({
                 url: $url,
