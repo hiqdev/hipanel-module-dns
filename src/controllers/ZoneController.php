@@ -35,10 +35,8 @@ class ZoneController extends \hipanel\base\CrudController
             ],
             'set-orientation' => [
                 'class' => OrientationAction::class,
-                'allowedRoutes' => [
-                    '@zone/index'
-                ]
-            ]
+                'allowedRoutes' => ['@dns/zone/index'],
+            ],
         ];
     }
 
