@@ -81,7 +81,7 @@ use yii\web\View;
             }
 
             echo '&nbsp;';
-            echo Html::button(Yii::t('hipanel', 'Cancel'), ['class' => 'btn btn-default btn-cancel']);
+            echo Html::button(Yii::t('hipanel', 'Cancel'), ['type' => 'reset', 'class' => 'btn btn-default btn-cancel']);
             echo '&nbsp;';
 
             if ($model->scenario === 'update') {
