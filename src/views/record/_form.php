@@ -96,16 +96,16 @@ use yii\web\View;
                         'class' => 'pull-right btn btn-default',
                     ],
                     'modal' => [
-                        'header' => Html::tag('h4', Yii::t('hipanel/dns', 'Confirm DNS record deleting')),
+                        'header' => Html::tag('h4', Yii::t('hipanel:dns', 'Confirm DNS record deleting')),
                         'headerOptions' => ['class' => 'label-danger'],
                         'footer' => [
-                            'label' => Yii::t('hipanel/dns', 'Delete record'),
-                            'data-loading-text' => Yii::t('hipanel/dns', 'Deleting record...'),
+                            'label' => Yii::t('hipanel:dns', 'Delete record'),
+                            'data-loading-text' => Yii::t('hipanel:dns', 'Deleting record...'),
                             'class' => 'btn btn-danger',
                         ],
                     ],
                     'body' => function ($model) {
-                        echo Yii::t('hipanel/dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
+                        echo Yii::t('hipanel:dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
                     },
                 ]);
             }

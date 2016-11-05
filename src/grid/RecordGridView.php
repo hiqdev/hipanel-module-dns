@@ -44,7 +44,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
             ],
             'zone'       => [
                 'class'             => MainColumn::className(),
-                'label'             => Yii::t('hipanel/dns', 'Zone'),
+                'label'             => Yii::t('hipanel:dns', 'Zone'),
                 'attribute'         => 'name',
             ],
             'actions'       => [
@@ -62,7 +62,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             ]), [
                                 'data-placement' => 'top',
                                 'data-toggle' => 'tooltip',
-                                'title' => Yii::t('hipanel/dns', 'This record was created by hosting panel automatically and cannot be updated'),
+                                'title' => Yii::t('hipanel:dns', 'This record was created by hosting panel automatically and cannot be updated'),
                                 'style' => 'display: inline-block; cursor: not-allowed;',
                             ]);
                         }
@@ -121,7 +121,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             ]), [
                                 'data-placement' => 'top',
                                 'data-toggle' => 'tooltip',
-                                'title' => Yii::t('hipanel/dns', 'This record is important for the domain zone viability and can not be deleted'),
+                                'title' => Yii::t('hipanel:dns', 'This record is important for the domain zone viability and can not be deleted'),
                                 'style' => 'display: inline-block; cursor: not-allowed;',
                             ]);
                         }
@@ -138,17 +138,17 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                                 'label' => '<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'),
                             ],
                             'modal' => [
-                                'header' => Html::tag('h4', Yii::t('hipanel/dns', 'Confirm DNS record deleting')),
+                                'header' => Html::tag('h4', Yii::t('hipanel:dns', 'Confirm DNS record deleting')),
                                 'headerOptions' => ['class' => 'label-danger'],
                                 'footer' => [
-                                    'label' => Yii::t('hipanel/dns', 'Delete record'),
-                                    'data-loading-text' => Yii::t('hipanel/dns', 'Deleting record...'),
+                                    'label' => Yii::t('hipanel:dns', 'Delete record'),
+                                    'data-loading-text' => Yii::t('hipanel:dns', 'Deleting record...'),
                                     'class' => 'btn btn-danger',
                                 ],
                             ],
                             'body' => function ($model) {
                                 echo Html::activeHiddenInput($model, 'hdomain_id');
-                                echo Yii::t('hipanel/dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
+                                echo Yii::t('hipanel:dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
                             },
                         ]);
                     },

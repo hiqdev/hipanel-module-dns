@@ -25,7 +25,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
         return [
             'zone' => [
                 'class' => MainColumn::className(),
-                'label' => Yii::t('hipanel/dns', 'Zone'),
+                'label' => Yii::t('hipanel:dns', 'Zone'),
                 'attribute' => 'name',
             ],
             'domain' => [
@@ -39,7 +39,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
             'nss' => [
                 'format' => 'raw',
                 'attribute' => 'nss_like',
-                'label' => Yii::t('hipanel/dns', 'NS servers'),
+                'label' => Yii::t('hipanel:dns', 'NS servers'),
                 'value' => function ($model) {
                     return ArraySpoiler::widget(['data' => $model->nss]);
                 },
@@ -48,9 +48,9 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'filter' => function ($column, $model, $attribute) {
                     return Html::activeDropDownList($model, $attribute, [
-                        '' => Yii::t('hipanel/dns', '---'),
-                        '1' => Yii::t('hipanel/dns', 'Enabled'),
-                        '0' => Yii::t('hipanel/dns', 'Disabled'),
+                        '' => Yii::t('hipanel:dns', '---'),
+                        '1' => Yii::t('hipanel:dns', 'Enabled'),
+                        '0' => Yii::t('hipanel:dns', 'Disabled'),
                     ], [
                         'class'     => 'form-control',
                     ]);
@@ -58,19 +58,19 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     return Label::widget([
                         'color' => $model->dns_on ? 'success' : '',
-                        'label' => $model->dns_on ? Yii::t('hipanel/dns', 'Enabled') : Yii::t('hipanel/dns', 'Disabled'),
+                        'label' => $model->dns_on ? Yii::t('hipanel:dns', 'Enabled') : Yii::t('hipanel:dns', 'Disabled'),
                         'labelOptions' => [
-                            'title' => Yii::t('hipanel/dns', 'Means that the panel will publish DNS records on the NS servers'),
+                            'title' => Yii::t('hipanel:dns', 'Means that the panel will publish DNS records on the NS servers'),
                         ],
                     ]);
                 },
             ],
             'bound_to' => [
                 'format' => 'raw',
-                'label' => Yii::t('hipanel/dns', 'Bound to'),
+                'label' => Yii::t('hipanel:dns', 'Bound to'),
                 'value' => function ($model) {
                     if (Yii::getAlias('@domain') !== null && $model->is_reg_domain) {
-                        return Html::a(Yii::t('hipanel/dns', 'Registered domain'), ['@domain/view', 'id' => $model->id]);
+                        return Html::a(Yii::t('hipanel:dns', 'Registered domain'), ['@domain/view', 'id' => $model->id]);
                     } elseif ($model->server_id) {
                         return Html::a($model->account . '@' . $model->server, ['@hdomain/view', 'id' => $model->id]);
                     } else {

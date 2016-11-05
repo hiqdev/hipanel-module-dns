@@ -110,7 +110,7 @@ class Record extends Model
             ],
             [
                 ['value'], 'match', 'pattern' => '/[a-z]/i', // fqdn has no letters? Then it seems like IP
-                'message' => Yii::t('hipanel/dns', '{attribute} is not a valid domain name'),
+                'message' => Yii::t('hipanel:dns', '{attribute} is not a valid domain name'),
                 'when' => $this->buildRuleWhen(['ns', 'mx', 'cname']),  'whenClient' => $this->buildRuleWhenClient(['ns', 'mx', 'cname']),
                 'on' => ['create', 'update'],
             ],
@@ -208,9 +208,9 @@ class Record extends Model
     public function attributeLabels()
     {
         return $this->mergeAttributeLabels([
-            'ttl' => Yii::t('hipanel/dns', 'TTL'),
-            'value' => Yii::t('hipanel/dns', 'Value'),
-            'fqdn' => Yii::t('hipanel/dns', 'Name'),
+            'ttl' => Yii::t('hipanel:dns', 'TTL'),
+            'value' => Yii::t('hipanel:dns', 'Value'),
+            'fqdn' => Yii::t('hipanel:dns', 'Name'),
         ]);
     }
 

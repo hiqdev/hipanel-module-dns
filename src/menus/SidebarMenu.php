@@ -24,12 +24,12 @@ class SidebarMenu extends \hiqdev\menumanager\Menu
     {
         return [
             'dns' => [
-                'label' => Yii::t('hipanel/dns', 'DNS'),
+                'label' => Yii::t('hipanel:dns', 'DNS'),
                 'url'   => ['/dns/zone/index'],
                 'icon'  => 'fa-globe',
                 'items' => [
                     'zones' => [
-                        'label' => Yii::t('hipanel/dns', 'Domains'),
+                        'label' => Yii::t('hipanel:dns', 'Domains'),
                         'url'   => ['/dns/zone/index'],
                     ],
                 ],

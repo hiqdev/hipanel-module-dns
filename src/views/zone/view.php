@@ -15,8 +15,8 @@ use yii\web\View;
  */
 
 $this->title                    = $model->domain;
-$this->params['subtitle']       = Yii::t('hipanel/dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
-$this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']];
+$this->params['subtitle']       = Yii::t('hipanel:dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
+$this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel:dns', 'DNS'), 'url' => ['@dns/zone/index']];
 $this->params['breadcrumbs'][]  = $this->title;
 
 Pjax::begin([
@@ -38,10 +38,10 @@ foreach ($records as $record) {
 
     <?php if ($model->is_served === false && count($ns_servers)) : ?>
         <div class="alert alert-warning alert-dismissible fade in" role="alert">
-            <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel/dns', 'Set NS servers for domain {domain}', ['domain' => $model->domain]) ?></h4>
+            <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:dns', 'Set NS servers for domain {domain}', ['domain' => $model->domain]) ?></h4>
 
             <p>
-                <?= Yii::t('hipanel/dns', 'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.', [
+                <?= Yii::t('hipanel:dns', 'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.', [
                     'domain_link' => Html::a($model->domain, ['@domain/view', 'id' => $model->id]),
                     'ns_servers' => Html::tag('code', implode(', ', $ns_servers)),
                 ]) ?>

@@ -6,7 +6,7 @@ use hipanel\widgets\Pjax;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = Yii::t('hipanel/dns', 'DNS zones');
+$this->title = Yii::t('hipanel:dns', 'DNS zones');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel/dns', 'Export DNS records'), Url::to(['@dns/record/export-hosts']))?>
+            <?= $page->renderBulkButton(Yii::t('hipanel:dns', 'Export DNS records'), Url::to(['@dns/record/export-hosts']))?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>

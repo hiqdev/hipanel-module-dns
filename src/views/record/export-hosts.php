@@ -10,8 +10,8 @@ use yii\helpers\Html;
  * @var $dataProvider ActiveDataProvider
  */
 
-$this->title = Yii::t('hipanel/dns', 'DNS records export');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel/dns', 'DNS'), 'url' => ['@dns/zone/index']];
+$this->title = Yii::t('hipanel:dns', 'DNS records export');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('hipanel:dns', 'DNS'), 'url' => ['@dns/zone/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 Box::begin();
@@ -34,7 +34,7 @@ foreach ($records as $record) {
 Box::begin();
 $form = \yii\widgets\ActiveForm::begin();
     echo $form->field($model, 'hdomain_id_in')->hiddenInput(['value' => implode(',', $model->hdomain_id_in)])->label(false);
-    echo $form->field($model, 'type_in')->checkboxList($model->getTypes())->label(Yii::t('hipanel/dns', 'Select record types you want to export'));
+    echo $form->field($model, 'type_in')->checkboxList($model->getTypes())->label(Yii::t('hipanel:dns', 'Select record types you want to export'));
     echo Html::submitButton(Yii::t('hipanel', 'Export'), ['class' => 'btn btn-success']);
 $form->end();
 Box::end();
