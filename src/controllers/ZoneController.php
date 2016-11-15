@@ -13,6 +13,7 @@ namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
+use hipanel\modules\dns\models\Record;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -45,7 +46,11 @@ class ZoneController extends \hipanel\base\CrudController
         if (($model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
             throw new NotFoundHttpException('DNS zone does not exist');
         }
-        $recordsDataProvider = new ArrayDataProvider(['allModels' => $model->records, 'pagination' => false]);
+        $recordsDataProvider = new ArrayDataProvider([
+            'allModels' => $model->records,
+            'pagination' => false,
+            'modelClass' => Record::class
+        ]);
 
         return $this->render('view', [
             'model' => $model,
