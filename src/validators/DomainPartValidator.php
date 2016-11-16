@@ -11,13 +11,13 @@
 
 namespace hipanel\modules\dns\validators;
 
+use hipanel\validators\DomainValidator;
 use Yii;
-use yii\validators\RegularExpressionValidator;
 
 /**
  * Validates part of the domain name.
  */
-class DomainPartValidator extends RegularExpressionValidator
+class DomainPartValidator extends DomainValidator
 {
     /**
      * {@inheritdoc}
@@ -40,12 +40,14 @@ class DomainPartValidator extends RegularExpressionValidator
      */
     public function init()
     {
-        parent::init();
         if ($this->message === null) {
             $this->message = Yii::t('hipanel:dns', '{attribute} is not a valid domain name part');
         }
+
         if ($this->extended) {
             $this->pattern = $this->extendedPattern;
         }
+
+        parent::init();
     }
 }
