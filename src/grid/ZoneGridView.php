@@ -13,8 +13,10 @@ namespace hipanel\modules\dns\grid;
 
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
+use hipanel\modules\dns\menus\DnsActionsMenu;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\Label;
+use hiqdev\menumanager\MenuColumn;
 use Yii;
 use yii\bootstrap\Html;
 
@@ -33,8 +35,8 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'filterAttribute' => 'domain_like',
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
-                'template' => '{view}',
+                'class' => MenuColumn::class,
+                'menuClass' => DnsActionsMenu::class,
             ],
             'nss' => [
                 'format' => 'raw',
