@@ -121,7 +121,6 @@ $srvHelpExample = Yii::t('hipanel:dns', 'Example: {example}', ['example' => Html
 $helpMessage = implode('<br>', [$srvHelpFormat, $srvHelpExample]);
 $this->registerCss('
 .srv-help {
-    color: #939393;
     font-size: 12px;
 }
 ');
