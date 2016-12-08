@@ -46,4 +46,7 @@ return [
     '{attribute} must not be an IPv6 address.' => 'Значение не должно быть IPv6 адресом.',
     '{attribute} is not a valid email address.' => 'Значение не является правильным email адресом.',
     '{attribute} is invalid.' => 'Значение  неверно.',
+
+    'Format: [Priority] [Weight] [Port] [Fully Qualified Domain Name]' => 'Формат: [Priority] [Weight] [Port] [Fully Qualified Domain Name]',
+    'Example: 1 10 5269 xmpp.example.com' => 'Пример: 1 10 5269 xmpp.example.com',
 ];
