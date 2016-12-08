@@ -116,8 +116,8 @@ use yii\web\View;
         </div>
     </div>
 <?php $form->end();
-$srvHelpFormat = Yii::t('hipanel:dns', 'Format: [Priority] [Weight] [Port] [Fully Qualified Domain Name]');
-$srvHelpExample = Yii::t('hipanel:dns', 'Example: 1 10 5269 xmpp.example.com');
+$srvHelpFormat = Yii::t('hipanel:dns', 'Format: {format}', ['format' => Html::tag('code', '[Priority] [Weight] [Port] [Fully Qualified Domain Name]')]);
+$srvHelpExample = Yii::t('hipanel:dns', 'Example: {example}', ['example' => Html::tag('code', '1 10 5269 xmpp.example.com')]);
 $helpMessage = implode('<br>', [$srvHelpFormat, $srvHelpExample]);
 $this->registerCss('
 .srv-help {
