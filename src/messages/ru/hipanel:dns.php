@@ -40,4 +40,10 @@ return [
     'Select record types you want to export' => 'Выберите типы записей, которые вы хотите экспортировать',
     'This record was created by hosting panel automatically and cannot be updated' => 'Эта запись была создана хостинговой панелью автоматически и не может быть изменена',
     'This record is important for the domain zone viability and can not be deleted' => 'Эта запись необходима для работы доменной зоны и не может быть удалена',
+
+    '{attribute} must be a valid IP address.' => 'Значение должно быть правильным IP адресом.',
+    '{attribute} must not be an IPv4 address.' => 'Значение не должно быть IPv4 адресом.',
+    '{attribute} must not be an IPv6 address.' => 'Значение не должно быть IPv6 адресом.',
+    '{attribute} is not a valid email address.' => 'Значение не является правильным email адресом.',
+    '{attribute} is invalid.' => 'Значение  неверно.',
 ];
