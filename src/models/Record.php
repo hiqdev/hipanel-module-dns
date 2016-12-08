@@ -67,6 +67,9 @@ class Record extends Model
                 ['value'], 'ip', 'ipv6' => false,
                 'when' => $this->buildRuleWhen('a'), 'whenClient' => $this->buildRuleWhenClient('a'),
                 'on' => ['create', 'update'],
+                'message' => Yii::t('hipanel:dns', '{attribute} must be a valid IP address.'),
+                'ipv6NotAllowed' => Yii::t('hipanel:dns', '{attribute} must not be an IPv6 address.'),
+                'ipv4NotAllowed' => Yii::t('hipanel:dns', '{attribute} must not be an IPv4 address.'),
             ],
 
             /// AAAA
@@ -74,6 +77,9 @@ class Record extends Model
                 ['value'], 'ip', 'ipv4' => false,
                 'when' => $this->buildRuleWhen('aaaa'), 'whenClient' => $this->buildRuleWhenClient('aaaa'),
                 'on' => ['create', 'update'],
+                'message' => Yii::t('hipanel:dns', '{attribute} must be a valid IP address.'),
+                'ipv6NotAllowed' => Yii::t('hipanel:dns', '{attribute} must not be an IPv6 address.'),
+                'ipv4NotAllowed' => Yii::t('hipanel:dns', '{attribute} must not be an IPv4 address.'),
             ],
 
             /// SOA
@@ -81,6 +87,7 @@ class Record extends Model
                 ['value'], 'email',
                 'when' => $this->buildRuleWhen('soa'), 'whenClient' => $this->buildRuleWhenClient('soa'),
                 'on' => ['create', 'update'],
+                'message' => Yii::t('hipanel:dns', '{attribute} is not a valid email address.'),
             ],
 
             /// TXT
@@ -120,6 +127,7 @@ class Record extends Model
                 ['value'], SrvValueValidator::className(),
                 'when' => $this->buildRuleWhen('srv'), 'whenClient' => $this->buildRuleWhenClient('srv'),
                 'on' => ['create', 'update'],
+                'message' => Yii::t('hipanel:dns', '{attribute} is invalid.'),
             ],
 
             /// No
