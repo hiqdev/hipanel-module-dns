@@ -59,6 +59,9 @@ use yii\web\View;
                 </div>
                 <div class="col-lg-5 col-md-4">
                     <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
+                    <div class="srv-help">
+
+                    </div>
                 </div>
                 <div class="col-lg-2 col-md-2">
                     <?= $form->field($model, "[$id]ttl")->dropDownList([
@@ -113,8 +116,17 @@ use yii\web\View;
         </div>
     </div>
 <?php $form->end();
-
-$this->registerJs("$('#{$form->id} .record-item').on('change', '[data-attribute=type]', function () {
+$srvHelpFormat = Yii::t('hipanel:dns', 'Format: [Priority] [Weight] [Port] [Fully Qualified Domain Name]');
+$srvHelpExample = Yii::t('hipanel:dns', 'Example: 1 10 5269 xmpp.example.com');
+$helpMessage = implode('<br>', [$srvHelpFormat, $srvHelpExample]);
+$this->registerCss('
+.srv-help {
+    color: #939393;
+    font-size: 12px;
+}
+');
+$this->registerJs("
+$('#{$form->id} .record-item').on('change', '[data-attribute=type]', function () {
     var form = $(this).closest('form');
     var name = $(this).closest('.record-item').find('[data-attribute=name]');
     var value = $(this).closest('.record-item').find('[data-attribute=value]');
@@ -124,10 +136,20 @@ $this->registerJs("$('#{$form->id} .record-item').on('change', '[data-attribute=
             $(form).yiiActiveForm('validateAttribute', $(input).attr('id'));
         }
     });
+    
+    var elem = $(this); 
+    console.log(this.tagName);
+    if (elem.val() === 'srv') {
+        $('.srv-help').html('{$helpMessage}');
+    } else {
+        $('.srv-help').html('');
+    }
 
     return true;
 });
 
 $('#{$form->id}').on('beforeSubmit', function () {
     $(this).find('.btn').attr('disabled', true);
-});"); ?>
+});
+
+"); ?>
