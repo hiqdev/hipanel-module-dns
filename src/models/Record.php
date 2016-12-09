@@ -78,8 +78,8 @@ class Record extends Model
                 'when' => $this->buildRuleWhen('aaaa'), 'whenClient' => $this->buildRuleWhenClient('aaaa'),
                 'on' => ['create', 'update'],
                 'message' => Yii::t('hipanel:dns', '{attribute} must be a valid IP address.'),
-                'ipv6NotAllowed' => Yii::t('hipanel:dns', '{attribute} must not be an IPv6 address.'),
-                'ipv4NotAllowed' => Yii::t('hipanel:dns', '{attribute} must not be an IPv4 address.'),
+                'ipv6NotAllowed' => Yii::t('hipanel:dns', '{attribute} must be a valid IPv4 address.'),
+                'ipv4NotAllowed' => Yii::t('hipanel:dns', '{attribute} must be a valid IPv6 address.'),
             ],
 
             /// SOA
@@ -95,6 +95,7 @@ class Record extends Model
                 ['value'], TxtValueValidator::className(),
                 'when' => $this->buildRuleWhen('txt'), 'whenClient' => $this->buildRuleWhenClient('txt'),
                 'on' => ['create', 'update'],
+                'message' => Yii::t('hipanel:dns', '{attribute} is invalid. Valid characters of the field are the letters of the Latin alphabet, and the gap separating characters'),
             ],
             [
                 ['value'], 'string', 'max' => 255,
