@@ -46,6 +46,9 @@ return [
     '{attribute} must not be an IPv6 address.' => 'Значение не должно быть IPv6 адресом.',
     '{attribute} is not a valid email address.' => 'Значение не является правильным email адресом.',
     '{attribute} is invalid.' => 'Значение  неверно.',
+    '{attribute} must be a valid IPv4 address.' => 'Значение должно быть IPv4 адресом.',
+    '{attribute} must be a valid IPv6 address.' => 'Значение должно быть IPv6 адресом.',
+    '{attribute} is invalid. Valid characters of the field are the letters of the Latin alphabet, and the gap separating characters' => 'Значение  неверно. Допустимыми символами поля являются буквы латинского алфавит, разделительные знаки и пробел.',
 
     'Format: {format}' => 'Формат: {format}',
     'Example: {example}' => 'Пример: {example}',
