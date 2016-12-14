@@ -7,9 +7,9 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\web\View;
 
-/*
- * @var $model Record
- * @var $this View
+/**
+ * @var Record $model
+ * @var View $this
  */
 ?>
 
@@ -54,14 +54,21 @@ use yii\web\View;
                     ]) ?>
                 </div>
                 <div class="col-lg-2 col-md-2">
-                    <?= $form->field($model, "[$id]type",
-                        ['inputOptions' => ['data-attribute' => 'type']])->dropDownList($model->getTypes()) ?>
-                </div>
+                    <?= $form->field($model, "[$id]type", ['inputOptions' => ['data-attribute' => 'type']])
+                        ->dropDownList(
+                            $model->getTypes(),
+                            ['options' => array_map(function ($hint) {
+                                return ['data' => $hint];
+                            }, $model->getTypeHints())]
+                        );
+                    ?>                </div>
                 <div class="col-lg-5 col-md-4">
                     <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
-                    <div class="srv-help">
-
-                    </div>
+                    <p class="help">
+                        <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <span class="value"></span></span>
+                        <br />
+                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <span class="value"></span></span>
+                    </p>
                 </div>
                 <div class="col-lg-2 col-md-2">
                     <?= $form->field($model, "[$id]ttl")->dropDownList([
@@ -116,36 +123,33 @@ use yii\web\View;
         </div>
     </div>
 <?php $form->end();
-$srvHelpFormat = Yii::t('hipanel:dns', 'Format: {format}', ['format' => Html::tag('samp', '[Priority] [Weight] [Port] [Fully Qualified Domain Name]')]);
-$srvHelpExample = Yii::t('hipanel:dns', 'Example: {example}', ['example' => Html::tag('samp', '1 10 5269 xmpp.example.com')]);
-$helpMessage = implode('<br>', [$srvHelpFormat, $srvHelpExample]);
+
 $this->registerCss('
-.srv-help {
+.help {
     font-size: 12px;
 }
 ');
+
 $this->registerJs("
 $('#{$form->id} .record-item').on('change', '[data-attribute=type]', function () {
     var form = $(this).closest('form');
     var name = $(this).closest('.record-item').find('[data-attribute=name]');
     var value = $(this).closest('.record-item').find('[data-attribute=value]');
+    var type = $(this).find(':selected');
 
     $.each({name: name, value: value}, function (name, input) {
         if (input.val().length > 0) {
             $(form).yiiActiveForm('validateAttribute', $(input).attr('id'));
         }
     });
-    
-    var elem = $(this); 
-    console.log(this.tagName);
-    if (elem.val() === 'srv') {
-        $('.srv-help').html('{$helpMessage}');
-    } else {
-        $('.srv-help').html('');
-    }
+        
+    form.find('.help .format  .value').html(type.data('format'));
+    form.find('.help .example .value').html(type.data('example'));
 
     return true;
 });
+
+$('#{$form->id} .record-item [data-attribute=type]').trigger('change');
 
 $('#{$form->id}').on('beforeSubmit', function () {
     $(this).find('.btn').attr('disabled', true);

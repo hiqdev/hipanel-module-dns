@@ -251,4 +251,42 @@ class Record extends Model
             'delete' => 'set',
         ];
     }
+
+    public function getTypeHints()
+    {
+        return [
+            'a' => [
+                'format' => Yii::t('hipanel:dns', 'IPv4 address'),
+                'example' => Yii::t('hipanel:dns', '192.168.0.1')
+            ],
+            'aaaa' => [
+                'format' => Yii::t('hipanel:dns', 'IPv6 address'),
+                'example' => Yii::t('hipanel:dns', '2001:0db8:0000:0000:0000:0000:0000:0001')
+            ],
+            'cname' => [
+                'format' => Yii::t('hipanel:dns', 'Fully Qualified Domain Name'),
+                'example' => Yii::t('hipanel:dns', 'www.example.com')
+            ],
+            'txt' => [
+                'format' => Yii::t('hipanel:dns', 'Text record. Usually used for SPF or DKIM records.'),
+                'example' => Yii::t('hipanel:dns', 'v=spf1 mx -all')
+            ],
+            'soa' => [
+                'format' => Yii::t('hipanel:dns', 'Email address'),
+                'example' => Yii::t('hipanel:dns', 'admin@example.com')
+            ],
+            'ns' => [
+                'format' => Yii::t('hipanel:dns', 'Fully Qualified Domain Name'),
+                'example' => Yii::t('hipanel:dns', 'ns.example.com')
+            ],
+            'mx' => [
+                'format' => Yii::t('hipanel:dns', '[Priority] [Fully Qualified Domain Name]'),
+                'example' => Yii::t('hipanel:dns', '10 post.example.com')
+            ],
+            'srv' => [
+                'format' => Yii::t('hipanel:dns', '[Priority] [Weight] [Port] [Fully Qualified Domain Name]'),
+                'example' => Yii::t('hipanel:dns', '1 10 5269 xmpp.example.com')
+            ]
+        ];
+    }
 }

@@ -26,7 +26,7 @@ class TxtValueValidator extends RegularExpressionValidator
 
     public function init()
     {
-        if ($this->message !== null) {
+        if ($this->message === null) {
             $this->message = Yii::t('hipanel:dns', '{attribute} is invalid. Valid characters of the field are the letters of the Latin alphabet, and the gap separating characters');
         }
     }
