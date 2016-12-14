@@ -64,11 +64,6 @@ use yii\web\View;
                     ?>                </div>
                 <div class="col-lg-5 col-md-4">
                     <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
-                    <p class="help">
-                        <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <samp class="value"></samp></span>
-                        <br />
-                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <samp class="value"></samp></span>
-                    </p>
                 </div>
                 <div class="col-lg-2 col-md-2">
                     <?= $form->field($model, "[$id]ttl")->dropDownList([
@@ -81,45 +76,57 @@ use yii\web\View;
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-lg-5 col-md-6">
+                    <?php
+                    if ($model->scenario === 'create') {
+                        echo Html::submitButton(Yii::t('hipanel', 'Create'), ['class' => 'btn btn-success']);
+                    } else {
+                        echo Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']);
+                    }
 
-            <?php
-
-            if ($model->scenario === 'create') {
-                echo Html::submitButton(Yii::t('hipanel', 'Create'), ['class' => 'btn btn-success']);
-            } else {
-                echo Html::submitButton(Yii::t('hipanel', 'Save'), ['class' => 'btn btn-success']);
-            }
-
-            echo '&nbsp;';
-            echo Html::button(Yii::t('hipanel', 'Cancel'), ['type' => 'reset', 'class' => 'btn btn-default btn-cancel']);
-            echo '&nbsp;';
-
-            if ($model->scenario === 'update') {
-                echo ModalButton::widget([
-                    'model' => $model,
-                    'scenario' => 'delete',
-                    'submit' => ModalButton::SUBMIT_PJAX,
-                    'form' => false,
-                    'button' => [
-                        'tag' => 'a',
-                        'label' => '<i class="fa fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'),
-                        'class' => 'pull-right btn btn-default',
-                    ],
-                    'modal' => [
-                        'header' => Html::tag('h4', Yii::t('hipanel:dns', 'Confirm DNS record deleting')),
-                        'headerOptions' => ['class' => 'label-danger'],
-                        'footer' => [
-                            'label' => Yii::t('hipanel:dns', 'Delete record'),
-                            'data-loading-text' => Yii::t('hipanel:dns', 'Deleting record...'),
-                            'class' => 'btn btn-danger',
-                        ],
-                    ],
-                    'body' => function ($model) {
-                        echo Yii::t('hipanel:dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
-                    },
-                ]);
-            }
-            ?>
+                    echo '&nbsp;';
+                    echo Html::button(Yii::t('hipanel', 'Cancel'), ['type' => 'reset', 'class' => 'btn btn-default btn-cancel']);
+                    echo '&nbsp;';
+                    ?>
+                </div>
+                <div class="col-lg-5 col-md-4">
+                    <p class="help">
+                        <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <samp class="value"></samp></span>
+                        <br />
+                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <samp class="value"></samp></span>
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <?php
+                    if ($model->scenario === 'update') {
+                        echo ModalButton::widget([
+                            'model' => $model,
+                            'scenario' => 'delete',
+                            'submit' => ModalButton::SUBMIT_PJAX,
+                            'form' => false,
+                            'button' => [
+                                'tag' => 'a',
+                                'label' => '<i class="fa fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'),
+                                'class' => 'pull-right btn btn-default',
+                            ],
+                            'modal' => [
+                                'header' => Html::tag('h4', Yii::t('hipanel:dns', 'Confirm DNS record deleting')),
+                                'headerOptions' => ['class' => 'label-danger'],
+                                'footer' => [
+                                    'label' => Yii::t('hipanel:dns', 'Delete record'),
+                                    'data-loading-text' => Yii::t('hipanel:dns', 'Deleting record...'),
+                                    'class' => 'btn btn-danger',
+                                ],
+                            ],
+                            'body' => function ($model) {
+                                echo Yii::t('hipanel:dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
+                            },
+                        ]);
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 <?php $form->end();
