@@ -65,9 +65,9 @@ use yii\web\View;
                 <div class="col-lg-5 col-md-4">
                     <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
                     <p class="help">
-                        <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <span class="value"></span></span>
+                        <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <samp class="value"></samp></span>
                         <br />
-                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <span class="value"></span></span>
+                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <samp class="value"></samp></span>
                     </p>
                 </div>
                 <div class="col-lg-2 col-md-2">
