@@ -34,6 +34,10 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'class' => MainColumn::className(),
                 'filterAttribute' => 'domain_like',
             ],
+            'idn' => [
+                'class' => MainColumn::className(),
+                'filterAttribute' => 'idn_like',
+            ],
             'actions' => [
                 'class' => MenuColumn::class,
                 'menuClass' => DnsActionsMenu::class,

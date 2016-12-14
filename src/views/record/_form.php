@@ -45,7 +45,7 @@ use yii\web\View;
                     {label}
                     <div class="input-group">
                       {input}
-                      <div class="input-group-addon">.' . $model->domain . '</div>
+                      <div class="input-group-addon">.' . $model->idn . '</div>
                     </div>
                     {hint}
                     {error}

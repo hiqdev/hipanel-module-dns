@@ -11,7 +11,7 @@ use hipanel\modules\server\widgets\combo\ServerCombo;
 ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('domain_like') ?>
+    <?= $search->field('idn_like') ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('server')->widget(ServerCombo::class, ['formElementSelector' => '.form-group']) ?>

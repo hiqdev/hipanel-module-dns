@@ -14,8 +14,8 @@ use yii\web\View;
  * @var $recordsDataProvider ArrayDataProvider
  */
 
-$this->title                    = $model->domain;
-$this->params['subtitle']       = Yii::t('hipanel:dns', 'DNS zone for domain {domain}', ['domain' => $model->domain]) . ' #' . $model->id;
+$this->title                    = $model->idn;
+$this->params['subtitle']       = Yii::t('hipanel:dns', 'DNS zone for domain {domain}', ['domain' => $model->idn]) . ' #' . $model->id;
 $this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel:dns', 'DNS'), 'url' => ['@dns/zone/index']];
 $this->params['breadcrumbs'][]  = $this->title;
 
@@ -53,6 +53,7 @@ foreach ($records as $record) {
             <?php
             $exampleModel = new Record([
                 'domain' => $model->domain,
+                'idn' => $model->idn,
                 'hdomain_id' => $model->id,
                 'ttl' => 7200,
                 'scenario' => 'create',

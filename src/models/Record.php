@@ -39,7 +39,7 @@ class Record extends Model
     {
         return [
             [['id', 'service_id', 'server_id'], 'integer'],
-            [['name', 'domain', 'type', 'fqdn', 'value', 'service', 'server'], 'safe'],
+            [['name', 'domain', 'idn', 'type', 'fqdn', 'idn_fqdn', 'value', 'service', 'server'], 'safe'],
             [['is_system'], 'boolean'],
 
             /// TTL validation
@@ -217,6 +217,7 @@ class Record extends Model
             'ttl' => Yii::t('hipanel:dns', 'TTL'),
             'value' => Yii::t('hipanel:dns', 'Value'),
             'fqdn' => Yii::t('hipanel:dns', 'Name'),
+            'idn' => Yii::t('hipanel:dns', 'Domain'),
         ]);
     }
 

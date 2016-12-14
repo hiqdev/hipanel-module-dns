@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $model,
                     'columns' => [
                         'checkbox',
-                        'client', 'domain', 'actions',
+                        'client', 'idn', 'actions',
                         'nss', 'dns_on', 'bound_to',
                     ],
                 ]) ?>

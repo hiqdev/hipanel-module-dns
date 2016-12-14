@@ -26,9 +26,9 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
     {
         return [
             'fqdn' => [
-                'attribute' => 'fqdn',
+                'attribute' => 'idn',
                 'value' => function ($model) {
-                    return $model->fqdn;
+                    return $model->idn_fqdn;
                 },
             ],
             'type' => [
