@@ -61,7 +61,8 @@ use yii\web\View;
                                 return ['data' => $hint];
                             }, $model->getTypeHints())]
                         );
-                    ?>                </div>
+                    ?>
+                </div>
                 <div class="col-lg-5 col-md-4">
                     <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
                 </div>
