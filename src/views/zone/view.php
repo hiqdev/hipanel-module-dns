@@ -32,7 +32,7 @@ foreach ($records as $record) {
         $ns_servers[] = $record['value'];
     }
 }
-\hipanel\helpers\ArrayHelper::multisort($ns_servers, 0);
+sort($ns_servers);
 
 ?>
 
