@@ -27,15 +27,15 @@ return [
                 ],
             ],
         ],
-        'menuManager' => [
-            'items' => [
-                'sidebar' => [
-                    'add' => [
-                        'dns' => [
-                            'menu' => \hipanel\modules\dns\menus\SidebarMenu::class,
-                            'where' => [
-                                'before' => ['server', 'domains'],
-                            ],
+    ],
+    'container' => [
+        'definitions' => [
+            \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
+                'add' => [
+                    'dns' => [
+                        'menu' => \hipanel\modules\dns\menus\SidebarMenu::class,
+                        'where' => [
+                            'before' => ['server', 'domains'],
                         ],
                     ],
                 ],
