@@ -16,7 +16,7 @@ use hipanel\grid\MainColumn;
 use hipanel\modules\dns\menus\DnsActionsMenu;
 use hipanel\widgets\ArraySpoiler;
 use hipanel\widgets\Label;
-use hiqdev\menumanager\MenuColumn;
+use hiqdev\yii2\menus\grid\MenuColumn;
 use Yii;
 use yii\bootstrap\Html;
 
