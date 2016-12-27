@@ -60,8 +60,6 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             return Html::tag('div', Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('hipanel', 'Update'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
                             ]), [
-                                'data-placement' => 'top',
-                                'data-toggle' => 'tooltip',
                                 'title' => Yii::t('hipanel:dns', 'This record was created by hosting panel automatically and cannot be updated'),
                                 'style' => 'display: inline-block; cursor: not-allowed;',
                             ]);
@@ -119,8 +117,6 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             return Html::tag('div', Html::a('<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
                             ]), [
-                                'data-placement' => 'top',
-                                'data-toggle' => 'tooltip',
                                 'title' => Yii::t('hipanel:dns', 'This record is important for the domain zone viability and can not be deleted'),
                                 'style' => 'display: inline-block; cursor: not-allowed;',
                             ]);
