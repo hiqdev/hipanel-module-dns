@@ -18,12 +18,7 @@ class Zone extends Model
 {
     use \hipanel\base\ModelTrait;
 
-    public static function index()
-    {
-        return 'dnszones';
-    }
-
-    public static function type()
+    public static function from()
     {
         return 'dnszone';
     }

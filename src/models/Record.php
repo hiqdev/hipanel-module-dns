@@ -205,7 +205,7 @@ class Record extends Model
 
     public function getRecords()
     {
-        return $this->hasOne(Zone::className(), ['hdomain_id' => 'id']);
+        return $this->hasOne(Zone::class, ['hdomain_id' => 'id']);
     }
 
     /**
