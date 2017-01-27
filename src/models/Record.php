@@ -25,12 +25,7 @@ class Record extends Model
 {
     use \hipanel\base\ModelTrait;
 
-    public static function index()
-    {
-        return 'dnsrecords';
-    }
-
-    public static function type()
+    public static function from()
     {
         return 'dnsrecord';
     }
