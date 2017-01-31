@@ -49,13 +49,4 @@ class Zone extends Model
             'idn' => Yii::t('hipanel:dns', 'Domain'),
         ]);
     }
-
-    /**
-     * @return array
-     */
-    public function scenarioCommands()
-    {
-        return [
-        ];
-    }
 }

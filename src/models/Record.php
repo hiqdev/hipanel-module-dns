@@ -239,7 +239,7 @@ class Record extends Model
     /**
      * @return array
      */
-    public function scenarioCommands()
+    public function scenarioActions()
     {
         return [
             'create' => 'set',
