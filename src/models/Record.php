@@ -220,7 +220,7 @@ class Record extends Model
     {
         if ($this->type === 'mx') {
             $value = $this->no . "\t" . $this->value;
-        } elseif ($this->type() === 'txt') {
+        } elseif ($this->type === 'txt') {
             $value = '"' . $this->value . '"';
         } else {
             $value = $this->value;
