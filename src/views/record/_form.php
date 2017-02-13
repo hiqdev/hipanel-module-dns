@@ -7,7 +7,6 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\web\View;
 
-
 /**
  * @var View
  * @var Record $model
