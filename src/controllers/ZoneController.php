@@ -1,12 +1,11 @@
 <?php
-
-/*
+/**
  * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\controllers;
@@ -49,7 +48,7 @@ class ZoneController extends \hipanel\base\CrudController
         $recordsDataProvider = new ArrayDataProvider([
             'allModels' => $model->records,
             'pagination' => false,
-            'modelClass' => Record::class
+            'modelClass' => Record::class,
         ]);
 
         return $this->render('view', [

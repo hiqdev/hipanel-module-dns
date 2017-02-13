@@ -1,12 +1,11 @@
 <?php
-
-/*
+/**
  * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\models;
@@ -226,7 +225,7 @@ class Record extends Model
             $value = $this->value;
         }
 
-        if (in_array($this->type, ['ns', 'mx', 'cname'])) {
+        if (in_array($this->type, ['ns', 'mx', 'cname'], true)) {
             $value .= '.';
         }
 
@@ -253,36 +252,36 @@ class Record extends Model
         return [
             'a' => [
                 'format' => Yii::t('hipanel:dns', 'IPv4 address'),
-                'example' => Yii::t('hipanel:dns', '192.168.0.1')
+                'example' => Yii::t('hipanel:dns', '192.168.0.1'),
             ],
             'aaaa' => [
                 'format' => Yii::t('hipanel:dns', 'IPv6 address'),
-                'example' => Yii::t('hipanel:dns', '2001:0db8:0000:0000:0000:0000:0000:0001')
+                'example' => Yii::t('hipanel:dns', '2001:0db8:0000:0000:0000:0000:0000:0001'),
             ],
             'cname' => [
                 'format' => Yii::t('hipanel:dns', 'Fully Qualified Domain Name'),
-                'example' => Yii::t('hipanel:dns', 'www.example.com')
+                'example' => Yii::t('hipanel:dns', 'www.example.com'),
             ],
             'txt' => [
                 'format' => Yii::t('hipanel:dns', 'Text record. Usually used for SPF or DKIM records.'),
-                'example' => Yii::t('hipanel:dns', 'v=spf1 mx -all')
+                'example' => Yii::t('hipanel:dns', 'v=spf1 mx -all'),
             ],
             'soa' => [
                 'format' => Yii::t('hipanel:dns', 'Email address'),
-                'example' => Yii::t('hipanel:dns', 'admin@example.com')
+                'example' => Yii::t('hipanel:dns', 'admin@example.com'),
             ],
             'ns' => [
                 'format' => Yii::t('hipanel:dns', 'Fully Qualified Domain Name'),
-                'example' => Yii::t('hipanel:dns', 'ns.example.com')
+                'example' => Yii::t('hipanel:dns', 'ns.example.com'),
             ],
             'mx' => [
                 'format' => Yii::t('hipanel:dns', '[Priority] [Fully Qualified Domain Name]'),
-                'example' => Yii::t('hipanel:dns', '10 post.example.com')
+                'example' => Yii::t('hipanel:dns', '10 post.example.com'),
             ],
             'srv' => [
                 'format' => Yii::t('hipanel:dns', '[Priority] [Weight] [Port] [Fully Qualified Domain Name]'),
-                'example' => Yii::t('hipanel:dns', '1 10 5269 xmpp.example.com')
-            ]
+                'example' => Yii::t('hipanel:dns', '1 10 5269 xmpp.example.com'),
+            ],
         ];
     }
 }

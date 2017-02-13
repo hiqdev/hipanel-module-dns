@@ -1,12 +1,11 @@
 <?php
-
-/*
+/**
  * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2016, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\grid;
@@ -40,7 +39,6 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 'value' => function ($model) {
                     return $model->getValueText();
                 },
-
             ],
             'zone'       => [
                 'class'             => MainColumn::className(),

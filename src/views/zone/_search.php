@@ -6,6 +6,7 @@ use hipanel\modules\hosting\widgets\combo\SshAccountCombo;
 use hipanel\modules\server\widgets\combo\ServerCombo;
 
 /**
+ * @var \yii\web\View
  * @var \hipanel\widgets\AdvancedSearch $search
  */
 ?>

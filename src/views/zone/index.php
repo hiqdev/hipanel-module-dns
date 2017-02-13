@@ -3,7 +3,6 @@
 use hipanel\modules\dns\grid\ZoneGridView;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = Yii::t('hipanel:dns', 'DNS zones');
