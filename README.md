@@ -1,5 +1,4 @@
-HiPanel DNS
-===========
+# HiPanel DNS
 
 **HiPanel DNS Module**
 

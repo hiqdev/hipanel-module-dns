@@ -34,3 +34,8 @@ coverage.clover
 composer.phar
 php-cs-fixer.phar
 phpunit.phar
+
+# Binaries
+chkipper.phar
+ocular.phar
+phpunit-skelgen.phar
