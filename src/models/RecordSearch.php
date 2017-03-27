@@ -1,6 +1,6 @@
 <?php
 /**
- * HiPanel DNS Module
+ * HiPanel DNS Module.
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
