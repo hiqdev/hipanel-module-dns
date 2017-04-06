@@ -71,4 +71,5 @@ return [
     '{attribute} must be a valid IP address.' => 'Значение должно быть правильным IP адресом.',
     '{attribute} must be a valid IPv6 address.' => 'Значение должно быть IPv6 адресом.',
     '{attribute} must not be an IPv6 address.' => 'Значение не должно быть IPv6 адресом.',
+    'To manage this DNS zone, you must change the NS server to the following: ns1.topdns.me, ns2.topdns.me, ns3.topdns.me. You can ignore this message, but the settings will only be applied after the correct NS servers have been installed.' => 'Для управления этой DNS зоной, вы должны сменить NS сервера на следующие: ns1.topdns.me, ns2.topdns.me, ns3.topdns.me. Вы можете проигнорировать это сообщение, но настройки будут применены только после установки корректных NS серверов.',
 ];
