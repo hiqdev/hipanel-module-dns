@@ -33,10 +33,6 @@ class ZoneController extends \hipanel\base\CrudController
                     'account' => 'hosting.account.login',
                 ],
             ],
-            'set-orientation' => [
-                'class' => OrientationAction::class,
-                'allowedRoutes' => ['@dns/zone/index'],
-            ],
         ];
     }
 
