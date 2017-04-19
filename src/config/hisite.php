@@ -31,10 +31,34 @@ return [
         'definitions' => [
             \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
                 'add' => [
-                    'dns' => [
-                        'menu' => \hipanel\modules\dns\menus\SidebarMenu::class,
-                        'where' => [
-                            'before' => ['server', 'domains'],
+//                    'dns' => [
+//                        'menu' => \hipanel\modules\dns\menus\SidebarMenu::class,
+//                        'where' => [
+//                            'before' => ['server', 'domains'],
+//                        ],
+//                    ],
+                    'domain' => [
+                        'menu' => [
+                            'merge' => [
+                                'dns' => [
+                                    'menu' => \hipanel\modules\dns\menus\DomainSidebarSubMenu::class,
+                                    'where' => [
+                                        'after' => ['domains'],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'hosting' => [
+                        'menu' => [
+                            'merge' => [
+                                'dns' => [
+                                    'menu' => \hipanel\modules\dns\menus\HostingSidebarSubMenu::class,
+                                    'where' => [
+                                        'after' => ['hdomains'],
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                 ],
