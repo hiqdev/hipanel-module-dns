@@ -28,9 +28,6 @@ use yii\web\View;
 ]) ?>
     <div class="panel panel-default">
         <div class="panel-body">
-            <blockquote class="text-warning">
-                <?= Yii::t('hipanel:dns', 'To manage this DNS zone, you must change the NS server to the following: ns1.topdns.me, ns2.topdns.me, ns3.topdns.me. You can ignore this message, but the settings will only be applied after the correct NS servers have been installed.') ?>
-            </blockquote>
             <div class="row record-item">
                 <?php
                 if ($id = $model->id) {
@@ -39,7 +36,6 @@ use yii\web\View;
                     $id = 0;
                 }
                 echo Html::activeHiddenInput($model, "[$id]hdomain_id");
-
                 ?>
                 <div class="col-lg-3 col-md-4">
                     <?= $form->field($model, "[$id]name", [
@@ -97,8 +93,7 @@ use yii\web\View;
                     <p class="help">
                         <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <samp class="value"></samp></span>
                         <br/>
-                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <samp
-                                    class="value"></samp></span>
+                        <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <samp class="value"></samp></span>
                     </p>
                 </div>
                 <div class="col-lg-2 col-md-2">
@@ -165,5 +160,4 @@ $('#{$form->id} .record-item [data-attribute=type]').trigger('change');
 $('#{$form->id}').on('beforeSubmit', function () {
     $(this).find('.btn').attr('disabled', true);
 });
-
 ");

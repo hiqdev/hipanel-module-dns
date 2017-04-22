@@ -8,7 +8,7 @@ use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\web\View;
 
-/*
+/**
  * @var $this View
  * @var $model Zone
  * @var $recordsDataProvider ArrayDataProvider
@@ -36,18 +36,30 @@ sort($ns_servers);
 
 ?>
 
-    <?php if ($model->is_served === false && count($ns_servers)) : ?>
+    <?php if (!$model->is_served && count($ns_servers)) : ?>
         <div class="alert alert-warning alert-dismissible fade in" role="alert">
-            <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:dns', 'Set NS servers for domain {domain}', ['domain' => $model->domain]) ?></h4>
+            <?php if ($model->isDomainRegisteredInPanel()) : ?>
+                <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:dns', 'Set NS servers for domain {domain}', ['domain' => $model->reg_domain]) ?></h4>
 
-            <p>
-                <?= Yii::t('hipanel:dns', 'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.', [
-                    'domain_link' => Html::a($model->domain, ['@domain/view', 'id' => $model->id]),
-                    'ns_servers' => Html::tag('code', implode(', ', $ns_servers)),
-                ]) ?>
-            </p>
+                <p>
+                    <?= Yii::t('hipanel:dns', 'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.', [
+                        'domain_link' => Html::a($model->reg_domain, ['@domain/view', 'id' => $model->reg_domain_id], ['data-pjax' => 0]),
+                        'ns_servers' => Html::tag('code', implode(', ', $ns_servers)),
+                    ]) ?>
+                </p>
+            <?php else : ?>
+                <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:dns', 'Make sure correct NS records for {domain} are set', ['domain' => $model->idn]) ?></h4>
+
+                <p>
+                    <?= Yii::t('hipanel:dns', 'To make these DNS records work, make sure to set {ns_servers} as the NS servers for {domain}.', [
+                        'domain' => $model->idn,
+                        'ns_servers' => Html::tag('code', implode(', ', $ns_servers)),
+                    ]) ?>
+                </p>
+            <?php endif ?>
         </div>
     <?php endif ?>
+
     <div class="row">
         <div class="col-md-12">
             <?php

@@ -73,8 +73,8 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'format' => 'raw',
                 'label' => Yii::t('hipanel:dns', 'Bound to'),
                 'value' => function ($model) {
-                    if (Yii::getAlias('@domain') !== null && $model->is_reg_domain) {
-                        return Html::a(Yii::t('hipanel:dns', 'Registered domain'), ['@domain/view', 'id' => $model->id]);
+                    if (Yii::getAlias('@domain') !== null && $model->reg_domain_id) {
+                        return Html::a(Yii::t('hipanel:dns', 'Registered domain'), ['@domain/view', 'id' => $model->reg_domain_id]);
                     } elseif ($model->server_id) {
                         return Html::a($model->account . '@' . $model->server, ['@hdomain/view', 'id' => $model->id]);
                     } else {

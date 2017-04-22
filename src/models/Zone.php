@@ -27,7 +27,7 @@ class Zone extends Model
         return [
             [['id', 'client_id', 'seller_id', 'account_id', 'server_id'], 'integer'],
             [['domain', 'idn', 'client', 'seller', 'name', 'account', 'server'], 'safe'],
-            [['url_fw', 'dns_on', 'is_reg_domain', 'is_served'], 'boolean'],
+            [['url_fw', 'dns_on', 'is_served', 'reg_domain', 'reg_domain_id'], 'boolean'],
             [['nss', 'mail', 'park'], 'safe'],
         ];
     }
@@ -47,5 +47,10 @@ class Zone extends Model
             'nss' => Yii::t('hipanel:dns', 'NS servers'),
             'idn' => Yii::t('hipanel:dns', 'Domain'),
         ]);
+    }
+
+    public function isDomainRegisteredInPanel()
+    {
+        return $this->is_served !== null;
     }
 }
