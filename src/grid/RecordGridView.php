@@ -21,9 +21,9 @@ use yii\helpers\Json;
 
 class RecordGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'fqdn' => [
                 'attribute' => 'idn',
                 'value' => function ($model) {
@@ -40,20 +40,20 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                     return $model->getValueText();
                 },
             ],
-            'zone'       => [
-                'class'             => MainColumn::className(),
-                'label'             => Yii::t('hipanel:dns', 'Zone'),
-                'attribute'         => 'name',
+            'zone' => [
+                'class' => MainColumn::className(),
+                'label' => Yii::t('hipanel:dns', 'Zone'),
+                'attribute' => 'name',
             ],
-            'actions'       => [
-                'class'                => ActionColumn::className(),
-                'template'             => '{update} {delete}',
-                'visibleButtonsCount'  => 2,
-                'options'              => [
+            'actions' => [
+                'class' => ActionColumn::className(),
+                'template' => '{update} {delete}',
+                'visibleButtonsCount' => 2,
+                'options' => [
                     'style' => 'width: 15%',
                 ],
-                'buttons'              => [
-                    'update'    => function ($url, $model, $key) {
+                'buttons' => [
+                    'update' => function ($url, $model, $key) {
                         if ($model->is_system) {
                             return Html::tag('div', Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('hipanel', 'Update'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
@@ -73,10 +73,10 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                         ]);
 
                         $progress = Json::htmlEncode("<tr><td colspan='5'>" . Progress::widget([
-                            'id' => 'progress-bar',
-                            'percent' => 100,
-                            'barOptions' => ['class' => 'active progress-bar-striped', 'style' => 'width: 100%'],
-                        ]) . '</td></tr>');
+                                'id' => 'progress-bar',
+                                'percent' => 100,
+                                'barOptions' => ['class' => 'active progress-bar-striped', 'style' => 'width: 100%'],
+                            ]) . '</td></tr>');
 
                         Yii::$app->view->registerJs("
                             $('.edit-dns-toggle').click(function () {
@@ -110,7 +110,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                         ");
                         return $data;
                     },
-                    'delete'    => function ($url, $model, $key) {
+                    'delete' => function ($url, $model, $key) {
                         if ($model->type === 'ns' && $model->is_system) {
                             return Html::tag('div', Html::a('<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
@@ -148,6 +148,6 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                     },
                 ],
             ],
-        ];
+        ]);
     }
 }
