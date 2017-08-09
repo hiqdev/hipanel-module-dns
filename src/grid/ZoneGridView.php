@@ -20,9 +20,9 @@ use yii\bootstrap\Html;
 
 class ZoneGridView extends \hipanel\grid\BoxedGridView
 {
-    public static function defaultColumns()
+    public function columns()
     {
-        return [
+        return array_merge(parent::columns(), [
             'zone' => [
                 'class' => MainColumn::className(),
                 'label' => Yii::t('hipanel:dns', 'Zone'),
@@ -56,7 +56,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                         '1' => Yii::t('hipanel:dns', 'Enabled'),
                         '0' => Yii::t('hipanel:dns', 'Disabled'),
                     ], [
-                        'class'     => 'form-control',
+                        'class' => 'form-control',
                     ]);
                 },
                 'value' => function ($model) {
@@ -82,6 +82,6 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                     }
                 },
             ],
-        ];
+        ]);
     }
 }
