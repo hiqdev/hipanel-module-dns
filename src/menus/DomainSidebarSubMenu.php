@@ -17,14 +17,6 @@ class DomainSidebarSubMenu extends \hiqdev\yii2\menus\Menu
                     ],
                 ],
             ],
-//            'hosting' => [
-//                'items' => [
-//                    'dns' => [
-//                        'label' => Yii::t('hipanel:dns', 'DNS'),
-//                        'url'   => ['/dns/zone/index'],
-//                    ],
-//                ],
-//            ],
         ];
     }
 }
