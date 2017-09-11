@@ -33,7 +33,7 @@ class Record extends Model
     {
         return [
             [['id', 'service_id', 'server_id'], 'integer'],
-            [['name', 'domain', 'idn', 'type', 'fqdn', 'idn_fqdn', 'value', 'service', 'server'], 'safe'],
+            [['name', 'domain', 'idn', 'type', 'fqdn', 'idn_fqdn', 'value', 'service', 'server'], 'trim'],
             [['is_system'], 'boolean'],
 
             /// TTL validation
