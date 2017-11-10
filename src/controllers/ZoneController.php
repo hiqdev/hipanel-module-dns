@@ -20,7 +20,7 @@ class ZoneController extends \hipanel\base\CrudController
 {
     public function actions()
     {
-        return [
+        return array_merge(parent::actions(), [
             'index' => [
                 'class' => IndexAction::class,
                 'filterStorageMap' => [
@@ -33,7 +33,7 @@ class ZoneController extends \hipanel\base\CrudController
                     'account' => 'hosting.account.login',
                 ],
             ],
-        ];
+        ]);
     }
 
     public function actionView($id)
