@@ -20,6 +20,13 @@ use Yii;
 use yii\helpers\Json;
 use yii\web\JsExpression;
 
+/**
+ * Class Record
+ *
+ * @author Dmytro Naumenko <d.naumenko.a@gmail.com>
+ *
+ * @property string $type
+ */
 class Record extends Model
 {
     use \hipanel\base\ModelTrait;
