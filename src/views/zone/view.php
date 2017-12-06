@@ -82,7 +82,7 @@ sort($ns_servers);
         <div class="col-md-12">
             <?php $recordsForGridDataProvider = clone $recordsDataProvider; ?>
             <?php $recordsForGridDataProvider->setModels(array_filter($recordsForGridDataProvider->getModels(), function (Record $model) {
-                return Yii::$app->user->can('support') || $model->type !== 'ns';
+                return Yii::$app->user->can('support') || $model->type !== 'ns' || !$model->is_system;
             })) ?>
             <?= RecordGridView::widget([
                 'dataProvider' => $recordsForGridDataProvider,

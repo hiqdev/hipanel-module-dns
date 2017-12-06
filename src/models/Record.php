@@ -26,6 +26,7 @@ use yii\web\JsExpression;
  * @author Dmytro Naumenko <d.naumenko.a@gmail.com>
  *
  * @property string $type
+ * @property bool $is_system
  */
 class Record extends Model
 {
