@@ -111,7 +111,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                         return $data;
                     },
                     'delete' => function ($url, $model, $key) {
-                        if ($model->type === 'ns' && $model->is_system) {
+                        if ($model->is_system) {
                             return Html::tag('div', Html::a('<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
                             ]), [
