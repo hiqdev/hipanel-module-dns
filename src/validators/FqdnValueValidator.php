@@ -11,23 +11,23 @@
 namespace hipanel\modules\dns\validators;
 
 use Yii;
-use yii\validators\RegularExpressionValidator;
+use hipanel\validators\DomainValidator;
 
 /**
  * Validates value of FQDN record.
  */
-class FqdnValueValidator extends RegularExpressionValidator
+class FqdnValueValidator extends DomainValidator
 {
-    /**
-     * {@inheritdoc}
-     */
-    public $pattern = '/^([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(.?)$/';
-
     /**
      * Whether to remove trailing `.` character.
      * @var boolean
      */
     public $trimTrailingDot = true;
+
+    /**
+     * @var bool
+     */
+    public $enableIdn = true;
 
     /**
      * {@inheritdoc}
@@ -43,10 +43,8 @@ class FqdnValueValidator extends RegularExpressionValidator
      */
     public function validateAttribute($model, $attribute)
     {
-        $result = $this->validateValue($model->$attribute);
-        if (!empty($result)) {
-            $this->addError($model, $attribute, $result[0], $result[1]);
-        } elseif ($this->trimTrailingDot) {
+        $result = parent::validateAttribute($model, $attribute);
+        if (empty($result) && $this->trimTrailingDot) {
             $model->$attribute = $this->trimTrainingDot($model->$attribute);
         }
     }

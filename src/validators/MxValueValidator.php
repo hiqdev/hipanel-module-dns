@@ -14,6 +14,7 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\Html;
 use yii\helpers\Json;
+use yii\validators\PunycodeAsset;
 use yii\validators\ValidationAsset;
 use yii\web\JsExpression;
 
@@ -42,6 +43,7 @@ class MxValueValidator extends FqdnValueValidator
      */
     public function validateAttribute($model, $attribute)
     {
+        $model->$attribute = static::convertAsciiToIdn(strtolower($model->$attribute));
         $this->extractPriority($model, $attribute);
         parent::validateAttribute($model, $attribute);
     }
@@ -70,19 +72,16 @@ class MxValueValidator extends FqdnValueValidator
     {
         $pattern = Html::escapeJsRegularExpression($this->patternWithPriority);
 
-        $options = [
+        $options = array_filter([
             'pattern' => new JsExpression($pattern),
             'not' => $this->not,
             'message' => Yii::$app->getI18n()->format($this->message, [
                 'attribute' => $model->getAttributeLabel($attribute),
             ], Yii::$app->language),
-        ];
-        if ($this->skipOnEmpty) {
-            $options['skipOnEmpty'] = 1;
-        }
-
+            'skipOnEmpty' => $this->skipOnEmpty ? 1 : null,
+        ]);
+        PunycodeAsset::register($view);
         ValidationAsset::register($view);
-
-        return 'yii.validation.regularExpression(value, messages, ' . Json::htmlEncode($options) . ');';
+        return 'value = punycode.toASCII(value.toLowerCase()); yii.validation.regularExpression(value, messages, ' . Json::htmlEncode($options) . ');';
     }
 }
