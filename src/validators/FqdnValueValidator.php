@@ -19,6 +19,11 @@ use hipanel\validators\DomainValidator;
 class FqdnValueValidator extends DomainValidator
 {
     /**
+     * {@inheritdoc}
+     */
+    public $pattern = '/^([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(.?)$/';
+
+    /**
      * Whether to remove trailing `.` character.
      * @var boolean
      */
