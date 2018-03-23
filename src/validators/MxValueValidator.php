@@ -43,7 +43,7 @@ class MxValueValidator extends FqdnValueValidator
      */
     public function validateAttribute($model, $attribute)
     {
-        $model->$attribute = static::convertAsciiToIdn(strtolower($model->$attribute));
+        $model->$attribute = static::convertAsciiToIdn(mb_strtolower($model->$attribute));
         $this->extractPriority($model, $attribute);
         parent::validateAttribute($model, $attribute);
     }
