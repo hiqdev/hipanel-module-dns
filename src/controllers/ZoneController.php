@@ -25,7 +25,7 @@ class ZoneController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    '*' => 'domain.read',
+                    '*' => 'dns.read',
                 ],
             ],
         ]);
