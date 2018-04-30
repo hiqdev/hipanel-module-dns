@@ -13,11 +13,24 @@ namespace hipanel\modules\dns\controllers;
 use hipanel\actions\IndexAction;
 use hipanel\actions\OrientationAction;
 use hipanel\modules\dns\models\Record;
+use hipanel\filters\EasyAccessControl;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 
 class ZoneController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    '*' => 'domain.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [
