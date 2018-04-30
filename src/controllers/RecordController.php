@@ -15,6 +15,7 @@ use hipanel\actions\ValidateFormAction;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
+use hipanel\filters\EasyAccessControl;
 use hiqdev\hiart\Collection;
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -23,6 +24,21 @@ use yii\web\NotFoundHttpException;
 
 class RecordController extends \hipanel\base\CrudController
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => EasyAccessControl::class,
+                'actions' => [
+                    'create' => 'dns.create',
+                    'update' => 'dns.update',
+                    'delete' => 'dns.delete',
+                    '*' => 'dns.read',
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         return array_merge(parent::actions(), [
