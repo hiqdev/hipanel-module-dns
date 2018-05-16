@@ -21,7 +21,7 @@ class FqdnValueValidator extends DomainValidator
     /**
      * {@inheritdoc}
      */
-    public $pattern = '/^([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(.?)$/';
+    public $pattern = '/^([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(\.?)$/';
 
     /**
      * Whether to remove trailing `.` character.
@@ -48,8 +48,8 @@ class FqdnValueValidator extends DomainValidator
      */
     public function validateAttribute($model, $attribute)
     {
-        $result = parent::validateAttribute($model, $attribute);
-        if (empty($result) && $this->trimTrailingDot) {
+        parent::validateAttribute($model, $attribute);
+        if (empty($this->errors) && $this->trimTrailingDot) {
             $model->$attribute = $this->trimTrainingDot($model->$attribute);
         }
     }
