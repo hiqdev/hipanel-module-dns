@@ -97,7 +97,7 @@ class Record extends Model
                 'on' => ['create', 'update'],
             ],
             [
-                ['value'], 'string', 'max' => 255,
+                ['value'], 'string', 'max' => 4096,
                 'when' => $this->buildRuleWhen('txt'), 'whenClient' => $this->buildRuleWhenClient('txt'),
                 'on' => ['create', 'update'],
             ],
