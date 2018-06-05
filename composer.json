@@ -52,7 +52,8 @@
     },
     "autoload": {
         "psr-4": {
-            "hipanel\\modules\\dns\\": "src"
+            "hipanel\\modules\\dns\\": "src",
+            "hipanel\\modules\\dns\\tests\\": "tests"
         }
     },
     "extra": {
