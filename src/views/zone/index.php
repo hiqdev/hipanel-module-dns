@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('bulk-actions') ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel:dns', 'Export DNS records'), Url::to(['@dns/record/export-hosts']))?>
+            <?= $page->renderBulkButton('@dns/record/export-hosts', Yii::t('hipanel:dns', 'Export DNS records'))?>
         <?php $page->endContent() ?>
 
         <?php $page->beginContent('table') ?>
