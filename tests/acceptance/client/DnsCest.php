@@ -4,6 +4,8 @@ namespace hipanel\modules\dns\tests\acceptance\client;
 
 use hipanel\helpers\Url;
 use hipanel\tests\_support\Page\IndexPage;
+use hipanel\tests\_support\Page\Widget\Input\Input;
+use hipanel\tests\_support\Page\Widget\Input\Select2;
 use hipanel\tests\_support\Step\Acceptance\Client;
 
 class DnsCest
@@ -23,32 +25,25 @@ class DnsCest
         $I->login();
         $I->needPage(Url::to('@dns/zone'));
         $I->see('DNS zones', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox($I);
+        $this->ensureICanSeeAdvancedSearchBox();
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox(Client $I)
+    private function ensureICanSeeAdvancedSearchBox()
     {
-        $I->see('Advanced search', 'h3');
-
-        $formId = 'form-advancedsearch-zone-search';
-        $this->index->containsFilters($formId, [
-            ['input' => [
-                'id' => 'zonesearch-idn_like',
-                'placeholder' => 'Domain',
-            ]],
+        $this->index->containsFilters([
+            new Input('Domain'),
+            new Select2('Server'),
+            new Select2('Account'),
         ]);
-
-        $I->see('Server', "//form[@id='$formId']//span");
-        $I->see('Account', "//form[@id='$formId']//span");
     }
 
     private function ensureICanSeeBulkSearchBox()
     {
         $this->index->containsBulkButtons([
-            ["//button[@type='submit']" => 'Export DNS records'],
+            'Export DNS records',
         ]);
-        $this->index->containsColumns('bulk-zone-search', [
+        $this->index->containsColumns([
             'Domain',
             'NS servers',
             'DNS',
