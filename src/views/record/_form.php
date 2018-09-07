@@ -37,7 +37,7 @@ use yii\web\View;
                 }
                 echo Html::activeHiddenInput($model, "[$id]hdomain_id");
                 ?>
-                <div class="col-lg-3 col-md-4">
+                <div class="col-lg-5">
                     <?= $form->field($model, "[$id]name", [
                         'template' => '
                     {label}
@@ -51,7 +51,7 @@ use yii\web\View;
                         'inputOptions' => ['data-attribute' => 'name'],
                     ]) ?>
                 </div>
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2">
                     <?= $form->field($model, "[$id]type", ['inputOptions' => ['data-attribute' => 'type']])
                         ->dropDownList(
                             $model->getTypes(),
@@ -61,10 +61,10 @@ use yii\web\View;
                         );
                     ?>
                 </div>
-                <div class="col-lg-5 col-md-4">
+                <div class="col-lg-3">
                     <?= $form->field($model, "[$id]value", ['inputOptions' => ['data-attribute' => 'value']]) ?>
                 </div>
-                <div class="col-lg-2 col-md-2">
+                <div class="col-lg-2">
                     <?= $form->field($model, "[$id]ttl")->dropDownList([
                         60 => 60,
                         600 => 600,
@@ -76,7 +76,7 @@ use yii\web\View;
             </div>
 
             <div class="row">
-                <div class="col-lg-5 col-md-6">
+                <div class="col-lg-7">
                     <?php
                     if ($model->scenario === 'create') {
                         echo Html::submitButton(Yii::t('hipanel', 'Create'), ['class' => 'btn btn-success']);
@@ -89,17 +89,16 @@ use yii\web\View;
                     echo '&nbsp;';
                     ?>
                 </div>
-                <div class="col-lg-5 col-md-4">
+                <div class="col-lg-3">
                     <p class="help">
                         <span class="format"><?= Yii::t('hipanel:dns', 'Format:') ?> <samp class="value"></samp></span>
                         <br/>
                         <span class="example"><?= Yii::t('hipanel:dns', 'Example:') ?> <samp class="value"></samp></span>
                     </p>
                 </div>
-                <div class="col-lg-2 col-md-2">
-                    <?php
-                    if ($model->scenario === 'update') {
-                        echo ModalButton::widget([
+                <div class="col-lg-2">
+                    <?php if ($model->scenario === 'update') : ?>
+                        <?= ModalButton::widget([
                             'model' => $model,
                             'scenario' => 'delete',
                             'submit' => ModalButton::SUBMIT_PJAX,
@@ -121,9 +120,8 @@ use yii\web\View;
                             'body' => function ($model) {
                                 echo Yii::t('hipanel:dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
                             },
-                        ]);
-                    }
-                    ?>
+                        ]) ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
