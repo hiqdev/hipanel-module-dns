@@ -11,7 +11,6 @@
 namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\IndexAction;
-use hipanel\actions\OrientationAction;
 use hipanel\modules\dns\models\Record;
 use hipanel\filters\EasyAccessControl;
 use yii\data\ArrayDataProvider;
