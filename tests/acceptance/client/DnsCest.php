@@ -25,16 +25,16 @@ class DnsCest
         $I->login();
         $I->needPage(Url::to('@dns/zone'));
         $I->see('DNS zones', 'h1');
-        $this->ensureICanSeeAdvancedSearchBox();
+        $this->ensureICanSeeAdvancedSearchBox($I);
         $this->ensureICanSeeBulkSearchBox();
     }
 
-    private function ensureICanSeeAdvancedSearchBox()
+    private function ensureICanSeeAdvancedSearchBox(Client $I)
     {
         $this->index->containsFilters([
-            new Input('Domain'),
-            new Select2('Server'),
-            new Select2('Account'),
+            Input::asAdvancedSearch($I, 'Domain'),
+            Select2::asAdvancedSearch($I,'Server'),
+            Select2::asAdvancedSearch($I, 'Account'),
         ]);
     }
 
