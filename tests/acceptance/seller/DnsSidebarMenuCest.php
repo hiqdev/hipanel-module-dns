@@ -14,9 +14,5 @@ class DnsSidebarMenuCest
         $menu->ensureContains('Hosting',[
             'DNS' => '@dns/zone/index',
         ]);
-
-        $menu->ensureContains('Domains',[
-            'DNS' => '@dns/zone/index',
-        ]);
     }
 }
