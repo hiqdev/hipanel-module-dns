@@ -13,6 +13,7 @@ namespace hipanel\modules\dns\grid;
 use hipanel\grid\ActionColumn;
 use hipanel\grid\MainColumn;
 use hipanel\helpers\Url;
+use hipanel\modules\dns\models\Record;
 use hipanel\widgets\ModalButton;
 use Yii;
 use yii\bootstrap\Progress;
@@ -26,34 +27,34 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
         return array_merge(parent::columns(), [
             'fqdn' => [
                 'attribute' => 'idn',
-                'value' => function ($model) {
+                'value' => function (Record $model) {
                     return $model->idn_fqdn;
                 },
             ],
             'type' => [
-                'value' => function ($model) {
+                'value' => function (Record $model) {
                     return strtoupper($model->type);
                 },
             ],
             'value' => [
-                'value' => function ($model) {
+                'value' => function (Record $model) {
                     return $model->getValueText();
                 },
             ],
             'zone' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'label' => Yii::t('hipanel:dns', 'Zone'),
                 'attribute' => 'name',
             ],
             'actions' => [
-                'class' => ActionColumn::className(),
+                'class' => ActionColumn::class,
                 'template' => '{update} {delete}',
                 'visibleButtonsCount' => 2,
                 'options' => [
                     'style' => 'width: 15%',
                 ],
                 'buttons' => [
-                    'update' => function ($url, $model, $key) {
+                    'update' => function (string $url, Record $model, int $key) {
                         if ($model->is_system) {
                             return Html::tag('div', Html::a('<i class="fa fa-pencil"></i> ' . Yii::t('hipanel', 'Update'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
@@ -110,7 +111,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                         ");
                         return $data;
                     },
-                    'delete' => function ($url, $model, $key) {
+                    'delete' => function (string $url, Record $model, int $key) {
                         if ($model->is_system) {
                             return Html::tag('div', Html::a('<i class="fa text-danger fa-trash-o"></i> ' . Yii::t('hipanel', 'Delete'), null, [
                                 'class' => 'btn btn-default btn-xs disabled',
@@ -140,9 +141,15 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                                     'class' => 'btn btn-danger',
                                 ],
                             ],
-                            'body' => function ($model) {
-                                echo Html::activeHiddenInput($model, 'hdomain_id');
-                                echo Yii::t('hipanel:dns', 'Are you sure, that you want to delete record {name}?', ['name' => $model->fqdn]);
+                            'body' => function (Record $model) use ($key) {
+                                echo Html::activeHiddenInput($model, 'hdomain_id', [
+                                    'id' => 'hdomain_id-' . $key
+                                ]);
+                                echo Yii::t(
+                                    'hipanel:dns',
+                                    'Are you sure, that you want to delete record {name}?',
+                                    ['name' => $model->fqdn]
+                                );
                             },
                         ]);
                     },
