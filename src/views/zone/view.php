@@ -13,7 +13,6 @@ use yii\web\View;
  * @var $model Zone
  * @var $recordsDataProvider ArrayDataProvider
  */
-
 $this->title                    = $model->idn;
 $this->params['subtitle']       = Yii::t('hipanel:dns', 'DNS zone for domain {domain}', ['domain' => $model->idn]) . ' #' . $model->id;
 $this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel:dns', 'DNS'), 'url' => ['@dns/zone/index']];

@@ -1,21 +1,21 @@
 <?php
 /**
- * HiPanel DNS Module.
+ * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\RedirectAction;
 use hipanel\actions\ValidateFormAction;
+use hipanel\filters\EasyAccessControl;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
-use hipanel\filters\EasyAccessControl;
 use hiqdev\hiart\Collection;
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -67,6 +67,7 @@ class RecordController extends \hipanel\base\CrudController
 
         if ($collection->count() && $collection->save()) {
             Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} created successfully', $collection->count()));
+
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
             return $this->redirect(['@dns/zone/view', 'id' => $id]);
@@ -88,6 +89,7 @@ class RecordController extends \hipanel\base\CrudController
     {
         if ($id && $hdomain_id && $model = $this->newModel()->findOne(compact('id', 'hdomain_id'))) {
             $model->scenario = 'update';
+
             return $this->renderAjax('update', ['model' => $model]);
         }
 
@@ -97,6 +99,7 @@ class RecordController extends \hipanel\base\CrudController
 
         if ($collection->first->id && $collection->save()) {
             Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
+
             return $this->renderZoneView($collection->first->hdomain_id);
         }
         throw new BadRequestHttpException('Bad request');
@@ -117,6 +120,7 @@ class RecordController extends \hipanel\base\CrudController
 
         if ($collection->validate() && $collection->save()) {
             Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} deleted successfully', $collection->count()));
+
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
             return $this->redirect(['@dns/zone/view', 'id' => $id]);

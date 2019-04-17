@@ -1,11 +1,11 @@
 <?php
 /**
- * HiPanel DNS Module.
+ * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\models;
@@ -21,6 +21,7 @@ class RecordSearch extends Record
         return [
             [['type_in', 'hdomain_id_in'], 'filter', 'filter' => function ($value) {
                 $res = StringHelper::explode($value, ',', true, true);
+
                 return $res;
             }, 'skipOnArray' => true, 'on' => ['export-hosts']],
             [['type_in'], 'default', 'value' => ['a', 'aaaa'], 'on' => ['export-hosts']],

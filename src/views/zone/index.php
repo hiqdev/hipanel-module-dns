@@ -3,7 +3,6 @@
 use hipanel\modules\dns\grid\ZoneGridView;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
-use yii\helpers\Url;
 
 $this->title = Yii::t('hipanel:dns', 'DNS zones');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');

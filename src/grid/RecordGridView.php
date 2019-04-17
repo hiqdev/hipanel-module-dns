@@ -1,11 +1,11 @@
 <?php
 /**
- * HiPanel DNS Module.
+ * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\grid;
@@ -109,6 +109,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
 
                             });
                         ");
+
                         return $data;
                     },
                     'delete' => function (string $url, Record $model, int $key) {
@@ -143,7 +144,7 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                             ],
                             'body' => function (Record $model) use ($key) {
                                 echo Html::activeHiddenInput($model, 'hdomain_id', [
-                                    'id' => 'hdomain_id-' . $key
+                                    'id' => 'hdomain_id-' . $key,
                                 ]);
                                 echo Yii::t(
                                     'hipanel:dns',

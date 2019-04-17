@@ -1,17 +1,17 @@
 <?php
 /**
- * HiPanel DNS Module.
+ * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\validators;
 
-use Yii;
 use hipanel\validators\DomainValidator;
+use Yii;
 
 /**
  * Validates value of FQDN record.

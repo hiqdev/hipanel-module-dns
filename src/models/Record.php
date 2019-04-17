@@ -1,11 +1,11 @@
 <?php
 /**
- * HiPanel DNS Module.
+ * HiPanel DNS Module
  *
  * @link      https://github.com/hiqdev/hipanel-module-dns
  * @package   hipanel-module-dns
  * @license   BSD-3-Clause
- * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
+ * @copyright Copyright (c) 2015-2019, HiQDev (http://hiqdev.com/)
  */
 
 namespace hipanel\modules\dns\models;
@@ -21,7 +21,7 @@ use yii\helpers\Json;
 use yii\web\JsExpression;
 
 /**
- * Class Record
+ * Class Record.
  *
  * @author Dmytro Naumenko <d.naumenko.a@gmail.com>
  *
@@ -173,6 +173,7 @@ class Record extends Model
     {
         $not = Json::encode($not);
         $types = Json::encode((array) $type);
+
         return new JsExpression("
             function (attribute, value) {
                 var type = $(attribute.input).closest('.record-item').find('[data-attribute=type]');
