@@ -37,9 +37,9 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'value' => [
-                'format' => 'raw',
+                'contentOptions' => ['style' => 'min-width: 100px !important; max-width: 300px !important; word-wrap: break-word'],
                 'value' => function (Record $model) {
-                    return "<span style='max-width: 300px; word-wrap: break-word;'> {$model->getValueText()} </span>";
+                    return $model->getValueText();
                 },
             ],
             'zone' => [
