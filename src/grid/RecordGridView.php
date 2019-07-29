@@ -37,6 +37,9 @@ class RecordGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'value' => [
+                'contentOptions' => [
+                    'style' => 'max-width: 200px; word-wrap: break-word',
+                ],
                 'value' => function (Record $model) {
                     return $model->getValueText();
                 },

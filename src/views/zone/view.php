@@ -23,6 +23,15 @@ Pjax::begin([
     'enablePushState' => false,
 ]);
 
+$this->registerCss(<<<CSS
+@media screen and (max-width: 767px) {
+    .table-responsive > .table > tbody > tr > td {
+         white-space: inherit !important;
+    }
+}
+CSS
+);
+
 $records = $recordsDataProvider->getModels();
 
 $ns_servers = [];
