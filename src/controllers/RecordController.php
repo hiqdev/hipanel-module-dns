@@ -17,6 +17,7 @@ use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
 use hiqdev\hiart\Collection;
+use hiqdev\hiart\Exception;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\BadRequestHttpException;
@@ -65,9 +66,13 @@ class RecordController extends \hipanel\base\CrudController
             'model' => $this->newModel(['scenario' => 'create']),
         ]))->load();
 
-        if ($collection->count() && $collection->save()) {
-            Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} created successfully', $collection->count()));
-
+        if ($collection->count()) {
+            try {
+                $collection->save();
+                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} saved successfully', $collection->count()));
+            } catch (Exception $e) {
+                Yii::$app->session->addFlash('error', $e->getMessage());
+            }
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
             return $this->redirect(['@dns/zone/view', 'id' => $id]);
