@@ -69,7 +69,7 @@ class RecordController extends \hipanel\base\CrudController
         if ($collection->count()) {
             try {
                 $collection->save();
-                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} created successfully', $collection->count()));
+                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} saved successfully', $collection->count()));
             } catch (Exception $e) {
                 Yii::$app->session->addFlash('error', $e->getMessage());
             }

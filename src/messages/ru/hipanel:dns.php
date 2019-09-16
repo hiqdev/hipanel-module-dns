@@ -45,7 +45,7 @@ return [
     'Value' => 'Значение',
     '[Priority] [Fully Qualified Domain Name]' => '[Приоритет] [Полное доменное имя]',
     '[Priority] [Weight] [Port] [Fully Qualified Domain Name]' => '[Приоритет] [Вес] [Порт] [Полное доменное имя]',
-    '{0, plural, one{DNS record} other{# DNS records}} created successfully' => '{0, plural, one{DNS запись успешно создана} few{# DNS записи успешно созданы} other{# DNS заспией успешно создано}}',
+    '{0, plural, one{DNS record} other{# DNS records}} saved successfully' => '{0, plural, one{DNS запись успешно сохранена} few{# DNS записи успешно сохранены} other{# DNS заспией успешно сохранено}}',
     '{0, plural, one{DNS record} other{# DNS records}} deleted successfully' => '{0, plural, one{DNS запись успешно удалена} few{# DNS записи успешно удалено} other{# DNS записей успешно удалено}}',
     '{0, plural, one{DNS record} other{# DNS records}} updated successfully' => '{0, plural, one{DNS запись успешно обновлена} few{# DNS записи успешно обновлено} other{# DNS записей успешно обновлено}}',
     '{attribute} is invalid.' => 'Значение неверно.',
