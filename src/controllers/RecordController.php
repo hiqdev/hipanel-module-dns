@@ -12,9 +12,9 @@ namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\RedirectAction;
 use hipanel\actions\ValidateFormAction;
+use hipanel\components\I18nResponseErrorFormatter;
 use hipanel\filters\EasyAccessControl;
 use hipanel\helpers\ArrayHelper;
-use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
 use hiqdev\hiart\Collection;
 use hiqdev\hiart\Exception;
@@ -71,7 +71,7 @@ class RecordController extends \hipanel\base\CrudController
                 $collection->save();
                 Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} saved successfully', $collection->count()));
             } catch (Exception $e) {
-                Yii::$app->session->addFlash('error', $e->getMessage());
+                Yii::$app->session->addFlash('error', (new I18nResponseErrorFormatter('hipanel:dns'))->__invoke($e));
             }
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
