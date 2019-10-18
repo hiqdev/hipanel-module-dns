@@ -29,10 +29,6 @@ return [
     ],
     'container' => [
         'definitions' => [
-            \hipanel\components\I18nResponseErrorFormatterInterface::class => [
-                ['class' => \hipanel\components\I18nResponseErrorFormatter::class],
-                ['dictionary' => 'hipanel:dns'],
-            ],
             \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [
                 'add' => [
 //                    'dns' => [
