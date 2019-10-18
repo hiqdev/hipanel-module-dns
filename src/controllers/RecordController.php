@@ -12,9 +12,9 @@ namespace hipanel\modules\dns\controllers;
 
 use hipanel\actions\RedirectAction;
 use hipanel\actions\ValidateFormAction;
+use hipanel\components\I18nResponseErrorFormatterInterface;
 use hipanel\filters\EasyAccessControl;
 use hipanel\helpers\ArrayHelper;
-use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
 use hiqdev\hiart\Collection;
 use hiqdev\hiart\Exception;
@@ -25,6 +25,23 @@ use yii\web\NotFoundHttpException;
 
 class RecordController extends \hipanel\base\CrudController
 {
+    /**
+     * @var I18nResponseErrorFormatterInterface
+     */
+    private $errorFormatter;
+
+    /**
+     * RecordController constructor.
+     * @inheritDoc
+     * @param I18nResponseErrorFormatterInterface
+     */
+    public function __construct($id, $module, I18nResponseErrorFormatterInterface $errorFormatter, $config = [])
+    {
+        $this->errorFormatter = $errorFormatter;
+
+        parent::__construct($id, $module, $config);
+    }
+
     public function behaviors()
     {
         return array_merge(parent::behaviors(), [
@@ -71,14 +88,7 @@ class RecordController extends \hipanel\base\CrudController
                 $collection->save();
                 Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} saved successfully', $collection->count()));
             } catch (Exception $e) {
-                $responseData = $e->getResponseData();
-                $message = $e->getMessage();
-                if (!empty($responseData['_error_ops'])) {
-                    $message = Yii::t('hipanel:dns', $message, $responseData['_error_ops']);
-                } else {
-                    $message = Yii::t('hipanel:dns', $message);
-                }
-                Yii::$app->session->addFlash('error', $message);
+                Yii::$app->session->addFlash('error', $this->errorFormatter->__invoke($e));
             }
             return $this->renderZoneView($collection->first->hdomain_id);
         } elseif ($id = $collection->first->hdomain_id) {
