@@ -34,6 +34,8 @@ return [
     'IPv4 address' => 'IPv4 адрес',
     'IPv6 address' => 'IPv6 адрес',
     'Name' => 'Имя',
+    "CNAME record {domain} conflicts with already existing '{type}' record {domain}" => "CNAME запись {domain} конфликтует с уже существующей {type} записью для {domain}",
+    'CNAME root record is not allowed' => 'Корневая CNAME запись недопустима',
     'Registered domain' => 'Загегистрированным доменом',
     'Select record types you want to export' => 'Выберите типы записей, которые вы хотите экспортировать',
     'Set NS servers for domain {domain}' => 'Установите NS серверы для домена {domain}',
