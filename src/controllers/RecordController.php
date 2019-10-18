@@ -13,7 +13,6 @@ namespace hipanel\modules\dns\controllers;
 use hipanel\actions\RedirectAction;
 use hipanel\actions\ValidateFormAction;
 use hipanel\components\I18nResponseErrorFormatter;
-use hipanel\components\I18nResponseErrorFormatterInterface;
 use hipanel\filters\EasyAccessControl;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\Zone;
