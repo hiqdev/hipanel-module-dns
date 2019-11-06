@@ -41,7 +41,7 @@ return [
     'Set NS servers for domain {domain}' => 'Установите NS серверы для домена {domain}',
     'TTL' => 'TTL',
     'Text record. Usually used for SPF or DKIM records.' => 'Текстовая запись. Обычно используется для SPF или DKIM записи.',
-    'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.' => 'Эта DNS зона относится к зарегистрированнму доменму {domain_link}, но он не настроен правильно. Для того, чтобы эти записи работали, пожалуйста, установите следующие NS сервера в настройках домена {ns_servers}.',
+    'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.' => 'Эта DNS зона относится к зарегистрированному домену {domain_link}, но он не настроен правильно. Для того, чтобы эти записи работали, пожалуйста, установите следующие NS сервера в настройках домена {ns_servers}.',
     'This record is important for the domain zone viability and can not be deleted' => 'Эта запись необходима для работы доменной зоны и не может быть удалена',
     'This record was created by hosting panel automatically and cannot be updated' => 'Эта запись была создана хостинговой панелью автоматически и не может быть изменена',
     'Value' => 'Значение',
