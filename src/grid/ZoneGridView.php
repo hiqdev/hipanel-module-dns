@@ -68,6 +68,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                         ],
                     ]);
                 },
+                'visible' => Yii::getAlias('@hdomain', false),
             ],
             'bound_to' => [
                 'format' => 'raw',
@@ -81,6 +82,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                         return Yii::$app->formatter->nullDisplay;
                     }
                 },
+                'visible' => Yii::getAlias('@account', false),
             ],
         ]);
     }

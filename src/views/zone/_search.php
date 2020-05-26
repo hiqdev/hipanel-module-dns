@@ -19,9 +19,11 @@ use hipanel\modules\server\widgets\combo\ServerCombo;
         <?= $search->field('server')->widget(ServerCombo::class, ['formElementSelector' => '.form-group']) ?>
     </div>
 <?php endif ?>
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('account')->widget(SshAccountCombo::class, ['formElementSelector' => '.form-group']) ?>
-</div>
+<?php if (Yii::getAlias('@account', false)) : ?>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <?= $search->field('account')->widget(SshAccountCombo::class, ['formElementSelector' => '.form-group']) ?>
+    </div>
+<?php endif ?>
 
 <?php if (Yii::$app->user->can('support')) : ?>
     <div class="col-md-4 col-sm-6 col-xs-12">
