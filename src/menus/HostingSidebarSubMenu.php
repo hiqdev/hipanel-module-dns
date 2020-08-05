@@ -22,6 +22,7 @@ class HostingSidebarSubMenu extends \hiqdev\yii2\menus\Menu
                     'dns' => [
                         'label' => Yii::t('hipanel:dns', 'DNS'),
                         'url'   => ['/dns/zone/index'],
+                        'visible' => Yii::$app->user->can('dns.read'),
                     ],
                 ],
             ],
