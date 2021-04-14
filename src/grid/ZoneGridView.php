@@ -41,6 +41,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'menuClass' => DnsActionsMenu::class,
             ],
             'nss' => [
+                /** todo: refactor */
                 'format' => 'raw',
                 'attribute' => 'nss_like',
                 'label' => Yii::t('hipanel:dns', 'NS servers'),
@@ -49,7 +50,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'dns_on' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'filter' => function ($column, $model, $attribute) {
                     return Html::activeDropDownList($model, $attribute, [
                         '' => Yii::t('hipanel:dns', '---'),
@@ -71,7 +72,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'visible' => Yii::getAlias('@hdomain', false),
             ],
             'bound_to' => [
-                'format' => 'raw',
+                'format' => 'html',
                 'label' => Yii::t('hipanel:dns', 'Bound to'),
                 'value' => function ($model) {
                     if (Yii::getAlias('@domain', false) && $model->reg_domain_id) {
