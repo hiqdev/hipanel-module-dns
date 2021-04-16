@@ -41,7 +41,6 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'menuClass' => DnsActionsMenu::class,
             ],
             'nss' => [
-                /** todo: refactor */
                 'format' => 'raw',
                 'attribute' => 'nss_like',
                 'label' => Yii::t('hipanel:dns', 'NS servers'),
