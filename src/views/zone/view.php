@@ -44,7 +44,7 @@ sort($ns_servers);
 
 ?>
 
-    <?php if (!$model->is_served && count($ns_servers)) : ?>
+    <?php if ((!$model->is_served && count($ns_servers)) || count($ns_servers) === 0) : ?>
         <div class="alert alert-warning alert-dismissible fade in" role="alert">
             <?php if ($model->isDomainRegisteredInPanel()) : ?>
                 <h4><i class="fa fa-warning-circle"></i>&nbsp;&nbsp;<?= Yii::t('hipanel:dns', 'Set NS servers for domain {domain}', ['domain' => $model->reg_domain]) ?></h4>
@@ -52,7 +52,7 @@ sort($ns_servers);
                 <p>
                     <?= Yii::t('hipanel:dns', 'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.', [
                         'domain_link' => Html::a($model->reg_domain, ['@domain/view', 'id' => $model->reg_domain_id], ['data-pjax' => 0]),
-                        'ns_servers' => Html::tag('code', implode(', ', $ns_servers)),
+                        'ns_servers' => Html::tag('code', implode(', ', $ns_servers ?: Yii::$app->params['module.dns.default.ns'])),
                     ]) ?>
                 </p>
             <?php else : ?>

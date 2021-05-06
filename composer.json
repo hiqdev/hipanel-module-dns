@@ -58,7 +58,8 @@
     },
     "extra": {
         "config-plugin": {
-            "web": "config/web.php"
+            "web": "config/web.php",
+            "params": "config/params.php"
         }
     },
     "minimum-stability": "dev",

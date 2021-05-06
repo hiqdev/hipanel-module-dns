@@ -51,10 +51,10 @@ class ZoneController extends \hipanel\base\CrudController
     public function actionView($id)
     {
         if (($model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
-            throw new NotFoundHttpException('DNS zone does not exist');
+//            throw new NotFoundHttpException('DNS zone does not exist');
         }
         $recordsDataProvider = new ArrayDataProvider([
-            'allModels' => $model->records,
+            'allModels' => $model === null ? null : $model->records,
             'pagination' => false,
             'modelClass' => Record::class,
         ]);
