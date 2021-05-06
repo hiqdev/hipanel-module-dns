@@ -52,7 +52,7 @@ sort($ns_servers);
                 <p>
                     <?= Yii::t('hipanel:dns', 'This DNS zone belongs to domain {domain_link}, but it is not configured properly. To make these DNS records work, please change NS servers of domain to {ns_servers}.', [
                         'domain_link' => Html::a($model->reg_domain, ['@domain/view', 'id' => $model->reg_domain_id], ['data-pjax' => 0]),
-                        'ns_servers' => Html::tag('code', implode(', ', $ns_servers ?: Yii::$app->params['module.dns.default.ns'])),
+                        'ns_servers' => Html::tag('code', implode(', ', $ns_servers ?: Yii::$app->params['module.dns.default.nss'])),
                     ]) ?>
                 </p>
             <?php else : ?>

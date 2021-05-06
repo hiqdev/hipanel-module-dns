@@ -9,5 +9,5 @@
  */
 
 return [
-    'module.dns.default.ns' => [],
+    'module.dns.default.nss' => [],
 ];
