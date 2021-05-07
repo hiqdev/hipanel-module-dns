@@ -49,7 +49,7 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 },
             ],
             'dns_on' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'filter' => function ($column, $model, $attribute) {
                     return Html::activeDropDownList($model, $attribute, [
                         '' => Yii::t('hipanel:dns', '---'),
@@ -71,13 +71,13 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
                 'visible' => Yii::getAlias('@hdomain', false),
             ],
             'bound_to' => [
-                'format' => 'html',
+                'format' => 'raw',
                 'label' => Yii::t('hipanel:dns', 'Bound to'),
                 'value' => function ($model) {
                     if (Yii::getAlias('@domain', false) && $model->reg_domain_id) {
                         return Html::a(Yii::t('hipanel:dns', 'Registered domain'), ['@domain/view', 'id' => $model->reg_domain_id]);
                     } elseif ($model->server_id) {
-                        return Html::a($model->account . '@' . $model->server, ['@hdomain/view', 'id' => $model->id]);
+                        return Html::a(Html::encode($model->account) . '@' . Html::encode($model->server), ['@hdomain/view', 'id' => $model->id]);
                     } else {
                         return Yii::$app->formatter->nullDisplay;
                     }
