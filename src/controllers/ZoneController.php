@@ -54,7 +54,7 @@ class ZoneController extends \hipanel\base\CrudController
 //            throw new NotFoundHttpException('DNS zone does not exist');
         }
         $recordsDataProvider = new ArrayDataProvider([
-            'allModels' => $model === null ? null : $model->records,
+            'allModels' => $model === null ? [] : $model->records,
             'pagination' => false,
             'modelClass' => Record::class,
         ]);
