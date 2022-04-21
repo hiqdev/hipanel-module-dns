@@ -43,8 +43,8 @@
         }
     ],
     "require": {
-        "hiqdev/hipanel-core": "dev-php8",
-        "hiqdev/hipanel-module-client": "dev-php8"
+        "hiqdev/hipanel-core": "dev-master",
+        "hiqdev/hipanel-module-client": "dev-master"
     },
     "require-dev": {
         "hiqdev/hidev-php": "dev-master",
