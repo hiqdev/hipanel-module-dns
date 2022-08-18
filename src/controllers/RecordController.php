@@ -22,6 +22,7 @@ use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
+use Throwable;
 
 class RecordController extends \hipanel\base\CrudController
 {
@@ -101,12 +102,16 @@ class RecordController extends \hipanel\base\CrudController
         $collection = (new Collection([
             'model' => $this->newModel(['scenario' => 'update']),
         ]))->load();
-
-        if ($collection->first->id && $collection->save()) {
-            Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
-
+        try {
+            if ($collection->first->id && $collection->save()) {
+                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
+                return $this->renderZoneView($collection->first->hdomain_id);
+            }
+        } catch (Throwable $e) {
+            Yii::$app->session->addFlash('error', $e->getMessage());
             return $this->renderZoneView($collection->first->hdomain_id);
         }
+
         throw new BadRequestHttpException('Bad request');
     }
 
@@ -122,13 +127,17 @@ class RecordController extends \hipanel\base\CrudController
         $collection = (new Collection([
             'model' => $this->newModel(['scenario' => 'delete']),
         ]))->load();
+        try {
+            if ($collection->validate() && $collection->save()) {
+                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} deleted successfully', $collection->count()));
 
-        if ($collection->validate() && $collection->save()) {
-            Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} deleted successfully', $collection->count()));
-
+                return $this->renderZoneView($collection->first->hdomain_id);
+            } elseif ($id = $collection->first->hdomain_id) {
+                return $this->redirect(['@dns/zone/view', 'id' => $id]);
+            }
+        } catch (Throwable $e) {
+            Yii::$app->session->addFlash('error', $e->getMessage());
             return $this->renderZoneView($collection->first->hdomain_id);
-        } elseif ($id = $collection->first->hdomain_id) {
-            return $this->redirect(['@dns/zone/view', 'id' => $id]);
         }
 
         throw new BadRequestHttpException('Bad request');
