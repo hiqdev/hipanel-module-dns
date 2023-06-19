@@ -3,6 +3,7 @@
 use hipanel\modules\dns\grid\RecordGridView;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
+use hipanel\widgets\Pjax;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\web\View;
@@ -18,6 +19,10 @@ $this->params['subtitle']       = Yii::t('hipanel:dns', 'DNS zone for domain {do
 $this->params['breadcrumbs'][]  = ['label' => Yii::t('hipanel:dns', 'DNS'), 'url' => ['@dns/zone/index']];
 $this->params['breadcrumbs'][]  = $this->title;
 
+Pjax::begin([
+    'id' => 'dns_zone_view',
+    'enablePushState' => false,
+]);
 
 $this->registerCss(<<<CSS
 @media screen and (max-width: 767px) {
@@ -120,3 +125,4 @@ sort($ns_servers);
 </div>
 
 <?php
+Pjax::end();
