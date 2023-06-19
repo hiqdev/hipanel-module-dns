@@ -12,6 +12,7 @@ namespace hipanel\modules\dns\widgets;
 
 use Closure;
 use hipanel\helpers\ArrayHelper;
+use hipanel\widgets\Pjax;
 use Yii;
 use yii\base\Widget;
 use yii\bootstrap\Progress;
@@ -99,7 +100,9 @@ class DnsZoneEditWidget extends Widget
      */
     public function run()
     {
+        Pjax::begin($this->pjaxOptions);
         echo Progress::widget($this->progressOptions);
         $this->registerClientScript();
+        Pjax::end();
     }
 }
