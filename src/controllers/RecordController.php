@@ -171,7 +171,15 @@ class RecordController extends \hipanel\base\CrudController
      */
     public function renderZoneView($id)
     {
-        if (($model = (new Zone())->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
+        $model = (new Zone)->find()
+            ->joinWith('records')
+            ->where([
+               'id' => $id,
+                'show_deleting' => 1,
+                'show_deleted' => 1,
+            ])
+            ->one();
+        if (empty($model)) {
             throw new NotFoundHttpException('DNS zone does not exist');
         }
         $recordsDataProvider = new ArrayDataProvider(['allModels' => $model->records, 'pagination' => false]);
