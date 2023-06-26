@@ -14,6 +14,8 @@ use hipanel\actions\IndexAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
+use hipanel\modules\hosting\models\Hdomain;
+use hipanel\modules\domain\models\Domain;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -51,9 +53,19 @@ class ZoneController extends \hipanel\base\CrudController
 
     public function actionView($id)
     {
-        if (($model = $this->newModel()->find()->joinWith('records')->where(['id' => $id])->one()) === null) {
+        $model = $this->newModel()
+            ->find()
+            ->joinWith('records')
+            ->where([
+                'id' => $id,
+                'show_deleting' => 1,
+                'show_deleted' => 1,
+            ])
+            ->one();
+        if (empty($model)) {
 //            throw new NotFoundHttpException('DNS zone does not exist');
         }
+
         $recordsDataProvider = new ArrayDataProvider([
             'allModels' => $model === null ? [] : $model->records,
             'pagination' => false,
