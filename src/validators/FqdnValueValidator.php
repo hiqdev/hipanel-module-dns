@@ -21,7 +21,7 @@ class FqdnValueValidator extends DomainValidator
     /**
      * {@inheritdoc}
      */
-    public $pattern = '/^([a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(\.?)$/';
+    public $pattern = '/^([_a-z0-9][a-z0-9-]*\.)+[a-z0-9][a-z0-9-]*(\.?)$/i';
 
     /**
      * Whether to remove trailing `.` character.

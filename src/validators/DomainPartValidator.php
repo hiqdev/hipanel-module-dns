@@ -26,7 +26,7 @@ class DomainPartValidator extends DomainValidator
     /**
      * @var string
      */
-    public $extendedPattern = '/^(@|\*|([_a-z0-9]([_a-z0-9-]{0,61}[a-z0-9])?(\.[_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*)?)$/i';
+    public $extendedPattern = '/^(@|\*|([_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*)?)$/i';
 
     /**
      * Whether to use [[extendedPattern]].
