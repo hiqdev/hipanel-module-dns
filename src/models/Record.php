@@ -50,12 +50,12 @@ class Record extends Model
             ],
 
             /// Name validations
-            [['name'], DomainPartValidator::className(),
+            [['name'], DomainPartValidator::class,
                 'when' => $this->buildRuleWhen(['srv', 'txt', 'cname'], true),
                 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname'], true),
                 'on' => ['create', 'update', 'delete'],
             ],
-            [['name'], DomainPartValidator::className(), 'extended' => true,
+            [['name'], DomainPartValidator::class, 'extended' => true,
                 'when' => $this->buildRuleWhen(['srv', 'txt', 'cname']),
                 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname']),
                 'on' => ['create', 'update', 'delete'],
@@ -92,7 +92,7 @@ class Record extends Model
 
             /// TXT
             [
-                ['value'], TxtValueValidator::className(),
+                ['value'], TxtValueValidator::class,
                 'when' => $this->buildRuleWhen('txt'), 'whenClient' => $this->buildRuleWhenClient('txt'),
                 'on' => ['create', 'update'],
             ],
@@ -104,14 +104,14 @@ class Record extends Model
 
             /// Extract `no` for MX records
             [
-                ['value'], MxValueValidator::className(),
+                ['value'], MxValueValidator::class,
                 'when' => $this->buildRuleWhen('mx'),  'whenClient' => $this->buildRuleWhenClient('mx'),
                 'on' => ['create', 'update'],
             ],
 
             /// NS, MX, CNAME
             [
-                ['value'], FqdnValueValidator::className(), 'trimTrailingDot' => true,
+                ['value'], FqdnValueValidator::class, 'trimTrailingDot' => true,
                 'when' => $this->buildRuleWhen(['ns', 'cname']),  'whenClient' => $this->buildRuleWhenClient(['ns', 'cname']),
                 'on' => ['create', 'update'],
             ],
@@ -124,7 +124,7 @@ class Record extends Model
 
             /// SRV
             [
-                ['value'], SrvValueValidator::className(),
+                ['value'], SrvValueValidator::class,
                 'when' => $this->buildRuleWhen('srv'), 'whenClient' => $this->buildRuleWhenClient('srv'),
                 'on' => ['create', 'update'],
                 'message' => Yii::t('hipanel:dns', '{attribute} is invalid.'),

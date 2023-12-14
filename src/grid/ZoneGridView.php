@@ -24,16 +24,16 @@ class ZoneGridView extends \hipanel\grid\BoxedGridView
     {
         return array_merge(parent::columns(), [
             'zone' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'label' => Yii::t('hipanel:dns', 'Zone'),
                 'attribute' => 'name',
             ],
             'domain' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'filterAttribute' => 'domain_like',
             ],
             'idn' => [
-                'class' => MainColumn::className(),
+                'class' => MainColumn::class,
                 'filterAttribute' => 'idn_like',
             ],
             'actions' => [

@@ -34,7 +34,7 @@ class Zone extends Model
 
     public function getRecords()
     {
-        return $this->hasMany(Record::className(), ['id' => 'hdomain_id']);
+        return $this->hasMany(Record::class, ['id' => 'hdomain_id']);
     }
 
     /**
