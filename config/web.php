@@ -11,6 +11,8 @@
 return [
     'aliases' => [
         '@dns' => '/dns/',
+        '@zone' => '/dns/zone',
+        '@record' => '/dns/record',
     ],
     'modules' => [
         'dns' => [
