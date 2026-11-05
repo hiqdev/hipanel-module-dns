@@ -50,6 +50,7 @@ class Record extends Model
             ],
 
             /// Name validations
+            [['name'], 'string', 'max' => 253, 'on' => ['create', 'update']],
             [['name'], DomainPartValidator::class,
                 'when' => $this->buildRuleWhen(['srv', 'txt', 'cname'], true),
                 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname'], true),
@@ -92,6 +93,11 @@ class Record extends Model
 
             /// TXT
             [
+                ['value'], 'filter', 'filter' => [TxtValueValidator::class, 'normalize'],
+                'when' => $this->buildRuleWhen('txt'),
+                'on' => ['create', 'update'],
+            ],
+            [
                 ['value'], TxtValueValidator::class,
                 'when' => $this->buildRuleWhen('txt'), 'whenClient' => $this->buildRuleWhenClient('txt'),
                 'on' => ['create', 'update'],
@@ -131,7 +137,7 @@ class Record extends Model
             ],
 
             /// No
-            [['no'], 'integer', 'on' => ['create', 'update']],
+            [['no'], 'integer', 'min' => 1, 'max' => 65535, 'on' => ['create', 'update']],
 
             /// For all:
             [['value', 'type', 'ttl'], 'required', 'on' => ['create', 'update']],
@@ -177,7 +183,7 @@ class Record extends Model
         return new JsExpression("
             function (attribute, value) {
                 var type = $(attribute.input).closest('.record-item').find('[data-attribute=type]');
-                if (!type) return true;
+                if (!type.length) return true;
                 var types = $types;
                 return $not !== (types.indexOf(type.val()) > -1);
             }
@@ -229,13 +235,13 @@ class Record extends Model
         if ($this->type === 'mx') {
             $value = $this->no . "\t" . $this->value;
         } elseif ($this->type === 'txt') {
-            $value = '"' . $this->value . '"';
+            $value = TxtValueValidator::toPresentation($this->value);
         } else {
             $value = $this->value;
         }
 
-        if (in_array($this->type, ['ns', 'mx', 'cname'], true)) {
-            $value .= '.';
+        if (in_array($this->type, ['ns', 'mx', 'cname', 'srv'], true)) {
+            $value = rtrim($value, '.') . '.';
         }
 
         $name = $this->name ?: '@';

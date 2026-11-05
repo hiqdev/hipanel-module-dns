@@ -21,12 +21,12 @@ class DomainPartValidator extends DomainValidator
     /**
      * {@inheritdoc}
      */
-    public $pattern = '/^(@|\*|([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?){0,4})?|(\*\.([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?){0,4})?))$/i';
+    public $pattern = '/^(@|\*|(\*\.)?[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*)?$/i';
 
     /**
      * @var string
      */
-    public $extendedPattern = '/^(@|\*|([_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*)?)$/i';
+    public $extendedPattern = '/^(@|\*|(\*\.)?[_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[_a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)*)?$/i';
 
     /**
      * Whether to use [[extendedPattern]].
