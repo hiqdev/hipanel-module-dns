@@ -60,4 +60,11 @@ return [
     '{attribute} must not be an IPv6 address.' => 'Значение не должно быть IPv6 адресом.',
     'To make these DNS records work, make sure to set {ns_servers} as the NS servers for {domain}.' => 'Эти DNS записи будут работать только если домену {domain} будут установлены следующие NS серверы: {ns_servers}',
     'Make sure correct NS records for {domain} are set' => 'Убедитесь в правильности NS серверов для домена {domain}',
+    'Failed to save DNS record' => 'Не удалось сохранить DNS запись',
+    'DNS zone does not exist' => 'DNS зона не существует',
+    'DNS zone for this domain does not exist' => 'DNS зона для этого домена не существует',
+    '{attribute} is invalid. Only printable ASCII characters (Latin letters, digits, spaces and punctuation) are allowed' => 'Значение неверно. Допустимы только печатные символы ASCII (латинские буквы, цифры, пробелы и знаки препинания)',
+    '{attribute} must start with the priority from {min} to {max}, e.g. "10 mail.example.com"' => 'Значение должно начинаться с приоритета от {min} до {max}, например "10 mail.example.com"',
+    'DNS record was not saved because of errors in other records of the zone' => 'DNS запись не сохранена из-за ошибок в других записях зоны',
+    '{0, plural, one{DNS record already exists and was not added again} other{# DNS records already exist and were not added again}}' => '{0, plural, one{DNS запись уже существует и не была добавлена повторно} few{# DNS записи уже существуют и не были добавлены повторно} other{# DNS записей уже существуют и не были добавлены повторно}}',
 ];
