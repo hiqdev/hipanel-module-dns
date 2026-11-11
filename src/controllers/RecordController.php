@@ -17,7 +17,6 @@ use hipanel\filters\EasyAccessControl;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\dns\models\RecordCollection;
 use hipanel\modules\dns\models\Zone;
-use hiqdev\hiart\Collection;
 use hiqdev\hiart\Exception;
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -80,7 +79,7 @@ class RecordController extends \hipanel\base\CrudController
                         Yii::$app->session->addFlash('info', Yii::t('hipanel:dns', '{0, plural, one{DNS record already exists and was not added again} other{# DNS records already exist and were not added again}}', $duplicates));
                     }
                 } else {
-                    Yii::$app->session->addFlash('error', $collection->getFirstError() ?: Yii::t('hipanel:dns', 'Failed to save DNS record'));
+                    $this->flashRecordErrors($collection);
                 }
             } catch (Exception $e) {
                 Yii::$app->session->addFlash('error', (new I18nResponseErrorFormatter('hipanel:dns'))->__invoke($e));
@@ -114,12 +113,16 @@ class RecordController extends \hipanel\base\CrudController
             return $this->renderAjax('update', ['model' => $model]);
         }
 
-        $collection = (new Collection([
+        $collection = (new RecordCollection([
             'model' => $this->newModel(['scenario' => 'update']),
         ]))->load();
         try {
-            if ($collection->first->id && $collection->save()) {
-                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
+            if ($collection->first->id) {
+                if ($collection->save()) {
+                    Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} updated successfully', $collection->count()));
+                } else {
+                    $this->flashRecordErrors($collection);
+                }
                 return $this->renderZoneView($collection->first->hdomain_id);
             }
         } catch (Throwable $e) {
@@ -139,12 +142,16 @@ class RecordController extends \hipanel\base\CrudController
      */
     public function actionDelete()
     {
-        $collection = (new Collection([
+        $collection = (new RecordCollection([
             'model' => $this->newModel(['scenario' => 'delete']),
         ]))->load();
         try {
-            if ($collection->validate() && $collection->save()) {
-                Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} deleted successfully', $collection->count()));
+            if ($collection->validate()) {
+                if ($collection->save()) {
+                    Yii::$app->session->addFlash('success', Yii::t('hipanel:dns', '{0, plural, one{DNS record} other{# DNS records}} deleted successfully', $collection->count()));
+                } else {
+                    $this->flashRecordErrors($collection);
+                }
 
                 return $this->renderZoneView($collection->first->hdomain_id);
             } elseif ($id = $collection->first->hdomain_id) {
@@ -177,6 +184,18 @@ class RecordController extends \hipanel\base\CrudController
             'dataProvider' => $dataProvider,
             'model' => $searchModel,
         ]);
+    }
+
+    /**
+     * Shows the error of every record the API rejected, each record on its own line.
+     */
+    private function flashRecordErrors(RecordCollection $collection): void
+    {
+        $errors = $collection->getRecordErrors();
+        if (empty($errors)) {
+            $errors = [Yii::t('hipanel:dns', 'Failed to save DNS record')];
+        }
+        Yii::$app->session->addFlash('error', implode('<br>', array_map('yii\helpers\Html::encode', $errors)));
     }
 
     /**
