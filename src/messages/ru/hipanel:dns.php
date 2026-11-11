@@ -67,4 +67,5 @@ return [
     '{attribute} must start with the priority from {min} to {max}, e.g. "10 mail.example.com"' => 'Значение должно начинаться с приоритета от {min} до {max}, например "10 mail.example.com"',
     'DNS record was not saved because of errors in other records of the zone' => 'DNS запись не сохранена из-за ошибок в других записях зоны',
     '{0, plural, one{DNS record already exists and was not added again} other{# DNS records already exist and were not added again}}' => '{0, plural, one{DNS запись уже существует и не была добавлена повторно} few{# DNS записи уже существуют и не были добавлены повторно} other{# DNS записей уже существуют и не были добавлены повторно}}',
+    'Full name of the record with the zone must be no longer than {max} characters' => 'Полное имя записи вместе с зоной должно быть не длиннее {max} символов',
 ];

@@ -51,6 +51,7 @@ class Record extends Model
 
             /// Name validations
             [['name'], 'string', 'max' => 253, 'on' => ['create', 'update']],
+            [['name'], 'validateFqdnLength', 'skipOnEmpty' => false, 'on' => ['create', 'update']],
             [['name'], DomainPartValidator::class,
                 'when' => $this->buildRuleWhen(['srv', 'txt', 'cname'], true),
                 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname'], true),
@@ -149,6 +150,23 @@ class Record extends Model
                 return $model->scenario === 'delete';
             }],
         ];
+    }
+
+    /**
+     * The full name of the record, the name with the zone, is limited to 253 characters.
+     * Checked when the zone is known: the API checks it anyway.
+     */
+    public function validateFqdnLength(string $attribute): void
+    {
+        $domain = rtrim((string) $this->domain, '.');
+        if ($domain === '') {
+            return;
+        }
+        $name = (string) $this->{$attribute};
+        $fqdn = in_array($name, ['', '@'], true) ? $domain : $name . '.' . $domain;
+        if (strlen($fqdn) > 253) {
+            $this->addError($attribute, Yii::t('hipanel:dns', 'Full name of the record with the zone must be no longer than {max} characters', ['max' => 253]));
+        }
     }
 
     /**
