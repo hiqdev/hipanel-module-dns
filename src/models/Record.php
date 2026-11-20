@@ -50,6 +50,8 @@ class Record extends Model
             ],
 
             /// Name validations
+            [['name'], 'string', 'max' => 253, 'on' => ['create', 'update']],
+            [['name'], 'validateFqdnLength', 'skipOnEmpty' => false, 'on' => ['create', 'update']],
             [['name'], DomainPartValidator::class,
                 'when' => $this->buildRuleWhen(['srv', 'txt', 'cname'], true),
                 'whenClient' => $this->buildRuleWhenClient(['srv', 'txt', 'cname'], true),
@@ -92,6 +94,11 @@ class Record extends Model
 
             /// TXT
             [
+                ['value'], 'filter', 'filter' => [TxtValueValidator::class, 'normalize'],
+                'when' => $this->buildRuleWhen('txt'),
+                'on' => ['create', 'update'],
+            ],
+            [
                 ['value'], TxtValueValidator::class,
                 'when' => $this->buildRuleWhen('txt'), 'whenClient' => $this->buildRuleWhenClient('txt'),
                 'on' => ['create', 'update'],
@@ -131,7 +138,7 @@ class Record extends Model
             ],
 
             /// No
-            [['no'], 'integer', 'on' => ['create', 'update']],
+            [['no'], 'integer', 'min' => 1, 'max' => 65535, 'on' => ['create', 'update']],
 
             /// For all:
             [['value', 'type', 'ttl'], 'required', 'on' => ['create', 'update']],
@@ -143,6 +150,23 @@ class Record extends Model
                 return $model->scenario === 'delete';
             }],
         ];
+    }
+
+    /**
+     * The full name of the record, the name with the zone, is limited to 253 characters.
+     * Checked when the zone is known: the API checks it anyway.
+     */
+    public function validateFqdnLength(string $attribute): void
+    {
+        $domain = rtrim((string) $this->domain, '.');
+        if ($domain === '') {
+            return;
+        }
+        $name = (string) $this->{$attribute};
+        $fqdn = in_array($name, ['', '@'], true) ? $domain : $name . '.' . $domain;
+        if (strlen($fqdn) > 253) {
+            $this->addError($attribute, Yii::t('hipanel:dns', 'Full name of the record with the zone must be no longer than {max} characters', ['max' => 253]));
+        }
     }
 
     /**
@@ -177,7 +201,7 @@ class Record extends Model
         return new JsExpression("
             function (attribute, value) {
                 var type = $(attribute.input).closest('.record-item').find('[data-attribute=type]');
-                if (!type) return true;
+                if (!type.length) return true;
                 var types = $types;
                 return $not !== (types.indexOf(type.val()) > -1);
             }
@@ -229,13 +253,13 @@ class Record extends Model
         if ($this->type === 'mx') {
             $value = $this->no . "\t" . $this->value;
         } elseif ($this->type === 'txt') {
-            $value = '"' . $this->value . '"';
+            $value = TxtValueValidator::toPresentation($this->value);
         } else {
             $value = $this->value;
         }
 
-        if (in_array($this->type, ['ns', 'mx', 'cname'], true)) {
-            $value .= '.';
+        if (in_array($this->type, ['ns', 'mx', 'cname', 'srv'], true)) {
+            $value = rtrim($value, '.') . '.';
         }
 
         $name = $this->name ?: '@';

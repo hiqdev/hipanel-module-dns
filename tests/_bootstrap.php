@@ -10,4 +10,7 @@
 
 error_reporting(E_ALL & ~E_NOTICE);
 
-require_once __DIR__ . '/../vendor/autoload.php';
+// The module's own vendor, or the one of the project it is installed into
+$vendor = is_dir(__DIR__ . '/../vendor') ? __DIR__ . '/../vendor' : __DIR__ . '/../../..';
+require_once $vendor . '/autoload.php';
+require_once $vendor . '/yiisoft/yii2/Yii.php';

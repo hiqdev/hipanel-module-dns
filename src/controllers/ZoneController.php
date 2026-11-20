@@ -14,8 +14,7 @@ use hipanel\actions\IndexAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\modules\dns\models\Record;
 use hipanel\modules\dns\models\Zone;
-use hipanel\modules\hosting\models\Hdomain;
-use hipanel\modules\domain\models\Domain;
+use Yii;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 
@@ -63,17 +62,22 @@ class ZoneController extends \hipanel\base\CrudController
             ])
             ->one();
         if (empty($model)) {
-//            throw new NotFoundHttpException('DNS zone does not exist');
+            // Embedded zone view (e.g. the DNS tab of a domain) shows a notice instead of an error page
+            if (Yii::$app->request->getIsAjax()) {
+                return $this->renderAjax('missing');
+            }
+
+            throw new NotFoundHttpException(Yii::t('hipanel:dns', 'DNS zone does not exist'));
         }
 
         $recordsDataProvider = new ArrayDataProvider([
-            'allModels' => $model === null ? [] : $model->records,
+            'allModels' => $model->records,
             'pagination' => false,
             'modelClass' => Record::class,
         ]);
 
         return $this->render('view', [
-            'model' => $model ?? new Zone(),
+            'model' => $model,
             'recordsDataProvider' => $recordsDataProvider,
         ]);
     }

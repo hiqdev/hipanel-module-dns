@@ -36,6 +36,8 @@ use yii\web\View;
                     $id = 0;
                 }
                 echo Html::activeHiddenInput($model, "[$id]hdomain_id");
+                // The zone: the full name of the record is validated with it
+                echo Html::activeHiddenInput($model, "[$id]domain");
                 ?>
                 <div class="col-lg-5">
                     <?= $form->field($model, "[$id]name", [
